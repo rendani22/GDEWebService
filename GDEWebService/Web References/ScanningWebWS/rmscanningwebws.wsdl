@@ -1,0 +1,1283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.esm.rmplc.co.uk/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.esm.rmplc.co.uk/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.esm.rmplc.co.uk/">
+      <s:element name="PingResult" type="s:string" />
+      <s:element name="PacketArrive">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OuterPacketBarcode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExamBodyID" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="ScanDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="CentreNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="QuestionPaperBarcode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="State">
+              <s:simpleType>
+                <s:restriction base="s:string">
+                  <s:enumeration value="OK" />
+                  <s:enumeration value="DamagedCanScan" />
+                  <s:enumeration value="DamagedCannotScan" />
+                </s:restriction>
+              </s:simpleType>
+            </s:element>
+            <s:element minOccurs="1" maxOccurs="1" name="Weight" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="AdditionalComments" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreateNew" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ScanCompanyInformation" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PacketArriveResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="FailureReason" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FailureCode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ComponentCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExamSessionID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CentreID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CEEReceived" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="Priority" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PacketsOpen">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SessionID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="TimeOpen" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IncludeReopenedPackets" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PacketOpenResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="FailureReason" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FailureCode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="unbounded" name="Packet" type="tns:PacketsOpenResultPacket" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PacketsOpenResultPacket">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PacketID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PacketBarcode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PacketArrivedDate" type="s:date" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreateNew" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CentreID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SessionID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ComponentCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExamSessionCentreID" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="ScanBureauID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Reopened" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:PacketsOpenResultPacketStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="PacketsOpenResultPacketStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Unknown" />
+          <s:enumeration value="NotArrived" />
+          <s:enumeration value="Arrived" />
+          <s:enumeration value="Complete" />
+          <s:enumeration value="Withdrawn" />
+          <s:enumeration value="Deleted" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="CandidateScript">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PacketID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="QuestionPaperBarcode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ScanBatchID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ScanScriptID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ScanDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="AtypicalStatus">
+              <s:simpleType>
+                <s:restriction base="s:string">
+                  <s:enumeration value="Normal" />
+                  <s:enumeration value="AtypicalCanScan" />
+                  <s:enumeration value="AtypicalCannotScan" />
+                </s:restriction>
+              </s:simpleType>
+            </s:element>
+            <s:element minOccurs="1" maxOccurs="1" name="RescanRequestID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ScannedCentreCandidateNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ScannedCentreNum" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CandidateExamEntryID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="AdditionalInformation" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="unbounded" name="Image">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="1" maxOccurs="1" name="PageNo" type="s:short" />
+                  <s:element minOccurs="1" maxOccurs="1" name="ImageType">
+                    <s:simpleType>
+                      <s:restriction base="s:string">
+                        <s:enumeration value="tiff" />
+                        <s:enumeration value="jpeg" />
+                        <s:enumeration value="png" />
+                        <s:enumeration value="xls" />
+                        <s:enumeration value="unknown" />
+                        <s:enumeration value="xlsx" />
+                        <s:enumeration value="html" />
+                      </s:restriction>
+                    </s:simpleType>
+                  </s:element>
+                  <s:element minOccurs="0" maxOccurs="1" name="ImageAttachment" type="s:base64Binary" />
+                  <s:element minOccurs="0" maxOccurs="1" name="CheckSum" type="s:string" />
+                  <s:element minOccurs="0" maxOccurs="1" name="ImagePath" type="s:string" />
+                  <s:element minOccurs="0" maxOccurs="1" name="PageBarcode" type="s:string" />
+                  <s:element minOccurs="0" maxOccurs="1" name="ScanCompanyPageID" type="s:string" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="ScanCompanyInformation" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AtypicalReason" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IsRescan" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CandidateScriptResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="FailureReason" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FailureCode" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AttendanceRegister">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PacketID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="AttendanceRegisterNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ScannedCentreNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ScannedComponent" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CentreSheetNo" type="s:byte" />
+            <s:element minOccurs="0" maxOccurs="unbounded" name="Image">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="1" maxOccurs="1" name="PageNo" type="s:short" />
+                  <s:element minOccurs="0" maxOccurs="1" name="ImageAttachment" type="s:base64Binary" />
+                  <s:element minOccurs="0" maxOccurs="1" name="CheckSum" type="s:string" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="RegisterDetails" type="tns:ArrayOfAttendanceRegisterCandidate" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAttendanceRegisterCandidate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Candidate">
+            <s:complexType>
+              <s:sequence>
+                <s:element minOccurs="1" maxOccurs="1" name="AttendanceStatus">
+                  <s:simpleType>
+                    <s:restriction base="s:string">
+                      <s:enumeration value="Absent" />
+                      <s:enumeration value="Present" />
+                      <s:enumeration value="NotMarked" />
+                      <s:enumeration value="Withdrawn" />
+                    </s:restriction>
+                  </s:simpleType>
+                </s:element>
+                <s:element minOccurs="0" maxOccurs="1" name="CentreCandidateNo" type="s:string" />
+                <s:element minOccurs="0" maxOccurs="1" name="AdditionalInformation" type="s:string" />
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AttendanceRegisterResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="FailureReason" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FailureCode" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RequestCentre">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ExamSessionID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CentreID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RequestImages" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RequestCentreResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="FailureReason" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FailureCode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExamBodyID" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="ExamBodyName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExamSessionCentreID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="CentreNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="unbounded" name="Packet">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+                  <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+                  <s:element minOccurs="1" maxOccurs="1" name="Status">
+                    <s:simpleType>
+                      <s:restriction base="s:string">
+                        <s:enumeration value="Unknown" />
+                        <s:enumeration value="NotArrived" />
+                        <s:enumeration value="Arrived" />
+                        <s:enumeration value="Complete" />
+                        <s:enumeration value="Withdrawn" />
+                        <s:enumeration value="Rogue" />
+                        <s:enumeration value="Deleted" />
+                      </s:restriction>
+                    </s:simpleType>
+                  </s:element>
+                  <s:element minOccurs="0" maxOccurs="unbounded" name="AttendanceRegister">
+                    <s:complexType>
+                      <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+                        <s:element minOccurs="0" maxOccurs="1" name="ScannedComponent" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="ScannedCentreNum" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="unbounded" name="Image">
+                          <s:complexType>
+                            <s:sequence>
+                              <s:element minOccurs="1" maxOccurs="1" name="PageNo" type="s:short" />
+                              <s:element minOccurs="0" maxOccurs="1" name="ImageAttachment" type="s:base64Binary" />
+                            </s:sequence>
+                          </s:complexType>
+                        </s:element>
+                      </s:sequence>
+                    </s:complexType>
+                  </s:element>
+                  <s:element minOccurs="0" maxOccurs="unbounded" name="AdditionalObject">
+                    <s:complexType>
+                      <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="PageNo" type="s:short" />
+                        <s:element minOccurs="1" maxOccurs="1" name="PageID" type="s:long" />
+                        <s:element minOccurs="0" maxOccurs="1" name="ImageAttachment" type="s:base64Binary" />
+                      </s:sequence>
+                    </s:complexType>
+                  </s:element>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="unbounded" name="QuestionPaper">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+                  <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+                  <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+                  <s:element minOccurs="1" maxOccurs="1" name="ExpectedPageCount" type="s:short" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="unbounded" name="Candidate">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:long" />
+                  <s:element minOccurs="0" maxOccurs="1" name="Surname" type="s:string" />
+                  <s:element minOccurs="0" maxOccurs="1" name="CentreCandidateNo" type="s:string" />
+                  <s:element minOccurs="1" maxOccurs="1" name="CandidateExamEntryID" type="s:long" />
+                  <s:element minOccurs="1" maxOccurs="1" name="Attendance">
+                    <s:simpleType>
+                      <s:restriction base="s:string">
+                        <s:enumeration value="Unknown" />
+                        <s:enumeration value="Absent" />
+                        <s:enumeration value="Present" />
+                        <s:enumeration value="Withdrawn" />
+                        <s:enumeration value="NotMarked" />
+                        <s:enumeration value="ImpliedPresent" />
+                        <s:enumeration value="Left" />
+                      </s:restriction>
+                    </s:simpleType>
+                  </s:element>
+                  <s:element minOccurs="0" maxOccurs="1" name="AdditionalInformation" type="s:string" />
+                  <s:element minOccurs="1" maxOccurs="1" name="DateOfBirth" type="s:dateTime" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="1" maxOccurs="1" name="CEEReceived" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RequestScripts">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ExamSessionCentreID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="QuestionPaperID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ScanningScriptID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="AllCentreScripts" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="AllScriptPages" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ScanScriptStatus" nillable="true">
+              <s:simpleType>
+                <s:restriction base="s:string">
+                  <s:enumeration value="Scanned" />
+                  <s:enumeration value="Unindexed" />
+                  <s:enumeration value="Indexed" />
+                </s:restriction>
+              </s:simpleType>
+            </s:element>
+            <s:element minOccurs="1" maxOccurs="1" name="PacketId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RequestScriptsResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="FailureReason" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FailureCode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="unbounded" name="Script">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="1" maxOccurs="1" name="ScriptID" type="s:long" />
+                  <s:element minOccurs="1" maxOccurs="1" name="ScanDate" type="s:dateTime" />
+                  <s:element minOccurs="1" maxOccurs="1" name="AtypicalStatus">
+                    <s:simpleType>
+                      <s:restriction base="s:string">
+                        <s:enumeration value="Normal" />
+                        <s:enumeration value="AtypicalCanScan" />
+                        <s:enumeration value="AtypicalCannotScan" />
+                      </s:restriction>
+                    </s:simpleType>
+                  </s:element>
+                  <s:element minOccurs="1" maxOccurs="1" name="Rescan" type="s:boolean" />
+                  <s:element minOccurs="1" maxOccurs="1" name="PacketID" type="s:int" />
+                  <s:element minOccurs="0" maxOccurs="1" name="ScannedCentreNum" type="s:string" />
+                  <s:element minOccurs="0" maxOccurs="1" name="ScannedCentreCandidateNo" type="s:string" />
+                  <s:element minOccurs="0" maxOccurs="1" name="ScannedQuestionPaperBarcode" type="s:string" />
+                  <s:element minOccurs="0" maxOccurs="unbounded" name="Page">
+                    <s:complexType>
+                      <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="PageID" type="s:long" />
+                        <s:element minOccurs="1" maxOccurs="1" name="PageNo" type="s:short" />
+                        <s:element minOccurs="0" maxOccurs="1" name="ImageType" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="ImageAttachment" type="s:base64Binary" />
+                        <s:element minOccurs="0" maxOccurs="1" name="PageBarcode" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="ScanCompanyPageID" type="s:string" />
+                      </s:sequence>
+                    </s:complexType>
+                  </s:element>
+                  <s:element minOccurs="1" maxOccurs="1" name="DocumentID" type="s:long" />
+                  <s:element minOccurs="1" maxOccurs="1" name="ScanScriptStatus">
+                    <s:simpleType>
+                      <s:restriction base="s:string">
+                        <s:enumeration value="Scanned" />
+                        <s:enumeration value="Unindexed" />
+                        <s:enumeration value="Indexed" />
+                      </s:restriction>
+                    </s:simpleType>
+                  </s:element>
+                  <s:element minOccurs="0" maxOccurs="1" name="PacketStatus">
+                    <s:simpleType>
+                      <s:restriction base="s:string">
+                        <s:enumeration value="Unknown" />
+                        <s:enumeration value="NotArrived" />
+                        <s:enumeration value="Arrived" />
+                        <s:enumeration value="Complete" />
+                        <s:enumeration value="Withdrawn" />
+                        <s:enumeration value="Rogue" />
+                        <s:enumeration value="Deleted" />
+                      </s:restriction>
+                    </s:simpleType>
+                  </s:element>
+                  <s:element minOccurs="1" maxOccurs="1" name="IndexedDate" type="s:dateTime" />
+                  <s:element minOccurs="0" maxOccurs="1" name="AdditionalInformation" type="s:string" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReconciledAttendance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ExamSessionCentreID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="unbounded" name="Candidate">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="1" maxOccurs="1" name="CandidateExamEntryID" type="s:long" />
+                  <s:element minOccurs="1" maxOccurs="1" name="AttendanceStatus">
+                    <s:simpleType>
+                      <s:restriction base="s:string">
+                        <s:enumeration value="Absent" />
+                        <s:enumeration value="Present" />
+                        <s:enumeration value="Withdrawn" />
+                        <s:enumeration value="NotMarked" />
+                        <s:enumeration value="ImpliedPresent" />
+                        <s:enumeration value="Left" />
+                        <s:enumeration value="NotUpdated" />
+                      </s:restriction>
+                    </s:simpleType>
+                  </s:element>
+                  <s:element minOccurs="0" maxOccurs="1" name="Surname" type="s:string" />
+                  <s:element minOccurs="0" maxOccurs="1" name="Forename" type="s:string" />
+                  <s:element minOccurs="0" maxOccurs="1" name="CentreCandidateNo" type="s:string" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReconciledAttendanceResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="FailureReason" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FailureCode" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReconciledCandidateScript">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ScriptID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExamSessionCentreID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="CandidateExamEntryID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="QuestionPaperID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="AtypicalStatus">
+              <s:simpleType>
+                <s:restriction base="s:string">
+                  <s:enumeration value="Normal" />
+                  <s:enumeration value="AtypicalCanScan" />
+                  <s:enumeration value="AtypicalCannotScan" />
+                </s:restriction>
+              </s:simpleType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="AdditionalInformation" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="unbounded" name="Page">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="1" maxOccurs="1" name="PageID" type="s:long" />
+                  <s:element minOccurs="1" maxOccurs="1" name="DestinationPageNo" type="s:short" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReconciledCandidateScriptResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="FailureReason" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FailureCode" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReconciledPacketAdditionalObjects">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PacketID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="unbounded" name="PageID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReconciledPacketAdditionalObjectsResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="FailureReason" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FailureCode" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RequestRescanRequests">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MaxCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RequestRescanRequestsResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="FailureReason" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FailureCode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="unbounded" name="RescanRequest">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="1" maxOccurs="1" name="RescanRequestID" type="s:int" />
+                  <s:element minOccurs="1" maxOccurs="1" name="RequestDate" type="s:dateTime" />
+                  <s:element minOccurs="0" maxOccurs="1" name="PacketBarcode" type="s:string" />
+                  <s:element minOccurs="0" maxOccurs="1" name="ScanBatchID" type="s:string" />
+                  <s:element minOccurs="1" maxOccurs="1" name="ScanScriptID" type="s:long" />
+                  <s:element minOccurs="1" maxOccurs="1" name="ScanDate" type="s:dateTime" />
+                  <s:element minOccurs="0" maxOccurs="1" name="CentreNum" type="s:string" />
+                  <s:element minOccurs="0" maxOccurs="1" name="CentreCandidateNo" type="s:string" />
+                  <s:element minOccurs="0" maxOccurs="1" name="Notes" type="s:string" />
+                  <s:element minOccurs="0" maxOccurs="1" name="ServiceDeliveryNotes" type="s:string" />
+                  <s:element minOccurs="1" maxOccurs="1" name="Type">
+                    <s:simpleType>
+                      <s:restriction base="s:string">
+                        <s:enumeration value="FullColourSwap" />
+                        <s:enumeration value="FullColourRescan" />
+                        <s:enumeration value="FullBitonalRescan" />
+                      </s:restriction>
+                    </s:simpleType>
+                  </s:element>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ComponentScanningSetup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VersionNo" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="RequestImages" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="SessionID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ComponentScanningSetupResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="FailureReason" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FailureCode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="SessionID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="unbounded" name="QuestionPaper">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="1" maxOccurs="1" name="ExamSessionID" type="s:int" />
+                  <s:element minOccurs="1" maxOccurs="1" name="ExamBodyID" type="s:short" />
+                  <s:element minOccurs="0" maxOccurs="1" name="ExamBodyName" type="s:string" />
+                  <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+                  <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+                  <s:element minOccurs="0" maxOccurs="1" name="AssessmentNum" type="s:string" />
+                  <s:element minOccurs="0" maxOccurs="1" name="ComponentNum" type="s:string" />
+                  <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+                  <s:element minOccurs="1" maxOccurs="1" name="ExpectedPageCount" type="s:short" />
+                  <s:element minOccurs="1" maxOccurs="1" name="ExamDate" type="s:dateTime" />
+                  <s:element minOccurs="1" maxOccurs="1" name="ExpectedCandidateCount" type="s:int" />
+                  <s:element minOccurs="0" maxOccurs="1" name="ScanningInstructions" type="s:string" />
+                  <s:element minOccurs="0" maxOccurs="unbounded" name="Images">
+                    <s:complexType>
+                      <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="PageNo" type="s:short" />
+                        <s:element minOccurs="1" maxOccurs="1" name="PageType">
+                          <s:simpleType>
+                            <s:restriction base="s:string">
+                              <s:enumeration value="tiff" />
+                              <s:enumeration value="jpeg" />
+                              <s:enumeration value="png" />
+                            </s:restriction>
+                          </s:simpleType>
+                        </s:element>
+                      </s:sequence>
+                    </s:complexType>
+                  </s:element>
+                  <s:element minOccurs="0" maxOccurs="1" name="FrontPageImage" type="s:base64Binary" />
+                  <s:element minOccurs="0" maxOccurs="1" name="Characteristics" type="tns:ArrayOfComponentScanningSetupResultQuestionPaperCharacteristic" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfComponentScanningSetupResultQuestionPaperCharacteristic">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Characteristic">
+            <s:complexType>
+              <s:sequence>
+                <s:element minOccurs="0" maxOccurs="1" name="Descriptor" type="s:string" />
+                <s:element minOccurs="1" maxOccurs="1" name="Value" nillable="true" type="s:string" />
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RequestComponentPackets">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ExamSessionID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RequestComponentPacketsResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="FailureReason" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FailureCode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExamBodyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="unbounded" name="Packet">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="1" maxOccurs="1" name="CentreID" type="s:int" />
+                  <s:element minOccurs="0" maxOccurs="1" name="CentreNum" type="s:string" />
+                  <s:element minOccurs="1" maxOccurs="1" name="PacketID" type="s:int" />
+                  <s:element minOccurs="0" maxOccurs="1" name="PacketBarcode" type="s:string" />
+                  <s:element minOccurs="1" maxOccurs="1" name="CEEReceived" type="s:boolean" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PacketComplete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PacketID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompleteDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="NonScannableItemCount" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ScriptCount" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CourierID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PacketCompleteResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="FailureReason" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FailureCode" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PacketScannedImages">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PacketID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ScanDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="unbounded" name="AdditionalObject">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="1" maxOccurs="1" name="PageNo" type="s:short" />
+                  <s:element minOccurs="0" maxOccurs="1" name="ImageAttachment" type="s:base64Binary" />
+                  <s:element minOccurs="0" maxOccurs="1" name="CheckSum" type="s:string" />
+                  <s:element minOccurs="0" maxOccurs="1" name="PageID" type="s:string" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PacketScannedImagesResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="FailureReason" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FailureCode" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RescanRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ScriptID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="Reason" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Notes" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RescanRequestResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="FailureReason" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FailureCode" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePirate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ExamSessionCentreID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="Surname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Forename" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CentreCandidateNo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DOB" type="s:date" />
+            <s:element minOccurs="0" maxOccurs="1" name="Gender" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AdditionalInformation" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePirateResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="FailureReason" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FailureCode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CandidateExamEntryId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="Forename" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Surname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CentreCandidateNo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckPacketStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="PacketID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckPacketStatusResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="FailureReason" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FailureCode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="unbounded" name="Packet">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="1" maxOccurs="1" name="PacketID" type="s:int" />
+                  <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+                  <s:element minOccurs="1" maxOccurs="1" name="Status">
+                    <s:simpleType>
+                      <s:restriction base="s:string">
+                        <s:enumeration value="Unknown" />
+                        <s:enumeration value="NotArrived" />
+                        <s:enumeration value="Arrived" />
+                        <s:enumeration value="Complete" />
+                        <s:enumeration value="Withdrawn" />
+                        <s:enumeration value="Rogue" />
+                        <s:enumeration value="Deleted" />
+                      </s:restriction>
+                    </s:simpleType>
+                  </s:element>
+                  <s:element minOccurs="0" maxOccurs="1" name="PacketArrivedDate" type="s:date" />
+                  <s:element minOccurs="1" maxOccurs="1" name="Rogue" type="s:boolean" />
+                  <s:element minOccurs="0" maxOccurs="1" name="CentreID" type="s:int" />
+                  <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:int" />
+                  <s:element minOccurs="0" maxOccurs="1" name="ScanBureauID" type="s:int" />
+                  <s:element minOccurs="0" maxOccurs="1" name="ComponentCode" type="s:string" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="PingSoapIn" />
+  <wsdl:message name="PingSoapOut">
+    <wsdl:part name="PingResult" element="tns:PingResult" />
+  </wsdl:message>
+  <wsdl:message name="PacketArriveSoapIn">
+    <wsdl:part name="PacketArrive" element="tns:PacketArrive" />
+  </wsdl:message>
+  <wsdl:message name="PacketArriveSoapOut">
+    <wsdl:part name="PacketArriveResult" element="tns:PacketArriveResult" />
+  </wsdl:message>
+  <wsdl:message name="PacketOpenSoapIn">
+    <wsdl:part name="PacketsOpen" element="tns:PacketsOpen" />
+  </wsdl:message>
+  <wsdl:message name="PacketOpenSoapOut">
+    <wsdl:part name="PacketOpenResult" element="tns:PacketOpenResult" />
+  </wsdl:message>
+  <wsdl:message name="CandidateScriptSoapIn">
+    <wsdl:part name="CandidateScript" element="tns:CandidateScript" />
+  </wsdl:message>
+  <wsdl:message name="CandidateScriptSoapOut">
+    <wsdl:part name="CandidateScriptResult" element="tns:CandidateScriptResult" />
+  </wsdl:message>
+  <wsdl:message name="AttendanceRegisterSoapIn">
+    <wsdl:part name="AttendanceRegister" element="tns:AttendanceRegister" />
+  </wsdl:message>
+  <wsdl:message name="AttendanceRegisterSoapOut">
+    <wsdl:part name="AttendanceRegisterResult" element="tns:AttendanceRegisterResult" />
+  </wsdl:message>
+  <wsdl:message name="RequestCentreSoapIn">
+    <wsdl:part name="RequestCentre" element="tns:RequestCentre" />
+  </wsdl:message>
+  <wsdl:message name="RequestCentreSoapOut">
+    <wsdl:part name="RequestCentreResult" element="tns:RequestCentreResult" />
+  </wsdl:message>
+  <wsdl:message name="RequestScriptsSoapIn">
+    <wsdl:part name="RequestScripts" element="tns:RequestScripts" />
+  </wsdl:message>
+  <wsdl:message name="RequestScriptsSoapOut">
+    <wsdl:part name="RequestScriptsResult" element="tns:RequestScriptsResult" />
+  </wsdl:message>
+  <wsdl:message name="ReconciledAttendanceSoapIn">
+    <wsdl:part name="ReconciledAttendance" element="tns:ReconciledAttendance" />
+  </wsdl:message>
+  <wsdl:message name="ReconciledAttendanceSoapOut">
+    <wsdl:part name="ReconciledAttendanceResult" element="tns:ReconciledAttendanceResult" />
+  </wsdl:message>
+  <wsdl:message name="ReconciledCandidateScriptSoapIn">
+    <wsdl:part name="ReconciledCandidateScript" element="tns:ReconciledCandidateScript" />
+  </wsdl:message>
+  <wsdl:message name="ReconciledCandidateScriptSoapOut">
+    <wsdl:part name="ReconciledCandidateScriptResult" element="tns:ReconciledCandidateScriptResult" />
+  </wsdl:message>
+  <wsdl:message name="ReconciledPacketAdditionalObjectsSoapIn">
+    <wsdl:part name="ReconciledPacketAdditionalObjects" element="tns:ReconciledPacketAdditionalObjects" />
+  </wsdl:message>
+  <wsdl:message name="ReconciledPacketAdditionalObjectsSoapOut">
+    <wsdl:part name="ReconciledPacketAdditionalObjectsResult" element="tns:ReconciledPacketAdditionalObjectsResult" />
+  </wsdl:message>
+  <wsdl:message name="RequestRescanRequestsSoapIn">
+    <wsdl:part name="RequestRescanRequests" element="tns:RequestRescanRequests" />
+  </wsdl:message>
+  <wsdl:message name="RequestRescanRequestsSoapOut">
+    <wsdl:part name="RequestRescanRequestsResult" element="tns:RequestRescanRequestsResult" />
+  </wsdl:message>
+  <wsdl:message name="ComponentScanningSetupSoapIn">
+    <wsdl:part name="ComponentScanningSetup" element="tns:ComponentScanningSetup" />
+  </wsdl:message>
+  <wsdl:message name="ComponentScanningSetupSoapOut">
+    <wsdl:part name="ComponentScanningSetupResult" element="tns:ComponentScanningSetupResult" />
+  </wsdl:message>
+  <wsdl:message name="RequestComponentPacketsSoapIn">
+    <wsdl:part name="RequestComponentPackets" element="tns:RequestComponentPackets" />
+  </wsdl:message>
+  <wsdl:message name="RequestComponentPacketsSoapOut">
+    <wsdl:part name="RequestComponentPacketsResult" element="tns:RequestComponentPacketsResult" />
+  </wsdl:message>
+  <wsdl:message name="PacketCompleteSoapIn">
+    <wsdl:part name="PacketComplete" element="tns:PacketComplete" />
+  </wsdl:message>
+  <wsdl:message name="PacketCompleteSoapOut">
+    <wsdl:part name="PacketCompleteResult" element="tns:PacketCompleteResult" />
+  </wsdl:message>
+  <wsdl:message name="PacketScannedImagesSoapIn">
+    <wsdl:part name="PacketScannedImages" element="tns:PacketScannedImages" />
+  </wsdl:message>
+  <wsdl:message name="PacketScannedImagesSoapOut">
+    <wsdl:part name="PacketScannedImagesResult" element="tns:PacketScannedImagesResult" />
+  </wsdl:message>
+  <wsdl:message name="RescanRequestSoapIn">
+    <wsdl:part name="RescanRequest" element="tns:RescanRequest" />
+  </wsdl:message>
+  <wsdl:message name="RescanRequestSoapOut">
+    <wsdl:part name="RescanRequestResult" element="tns:RescanRequestResult" />
+  </wsdl:message>
+  <wsdl:message name="CreatePirateSoapIn">
+    <wsdl:part name="CreatePirate" element="tns:CreatePirate" />
+  </wsdl:message>
+  <wsdl:message name="CreatePirateSoapOut">
+    <wsdl:part name="CreatePirateResult" element="tns:CreatePirateResult" />
+  </wsdl:message>
+  <wsdl:message name="CheckPacketStatusSoapIn">
+    <wsdl:part name="CheckPacketStatus" element="tns:CheckPacketStatus" />
+  </wsdl:message>
+  <wsdl:message name="CheckPacketStatusSoapOut">
+    <wsdl:part name="CheckPacketStatusResult" element="tns:CheckPacketStatusResult" />
+  </wsdl:message>
+  <wsdl:portType name="rmScanningWebWSSoap">
+    <wsdl:operation name="Ping">
+      <wsdl:input message="tns:PingSoapIn" />
+      <wsdl:output message="tns:PingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PacketArrive">
+      <wsdl:input message="tns:PacketArriveSoapIn" />
+      <wsdl:output message="tns:PacketArriveSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PacketOpen">
+      <wsdl:input message="tns:PacketOpenSoapIn" />
+      <wsdl:output message="tns:PacketOpenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CandidateScript">
+      <wsdl:input message="tns:CandidateScriptSoapIn" />
+      <wsdl:output message="tns:CandidateScriptSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AttendanceRegister">
+      <wsdl:input message="tns:AttendanceRegisterSoapIn" />
+      <wsdl:output message="tns:AttendanceRegisterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestCentre">
+      <wsdl:input message="tns:RequestCentreSoapIn" />
+      <wsdl:output message="tns:RequestCentreSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestScripts">
+      <wsdl:input message="tns:RequestScriptsSoapIn" />
+      <wsdl:output message="tns:RequestScriptsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReconciledAttendance">
+      <wsdl:input message="tns:ReconciledAttendanceSoapIn" />
+      <wsdl:output message="tns:ReconciledAttendanceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReconciledCandidateScript">
+      <wsdl:input message="tns:ReconciledCandidateScriptSoapIn" />
+      <wsdl:output message="tns:ReconciledCandidateScriptSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReconciledPacketAdditionalObjects">
+      <wsdl:input message="tns:ReconciledPacketAdditionalObjectsSoapIn" />
+      <wsdl:output message="tns:ReconciledPacketAdditionalObjectsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestRescanRequests">
+      <wsdl:input message="tns:RequestRescanRequestsSoapIn" />
+      <wsdl:output message="tns:RequestRescanRequestsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ComponentScanningSetup">
+      <wsdl:input message="tns:ComponentScanningSetupSoapIn" />
+      <wsdl:output message="tns:ComponentScanningSetupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestComponentPackets">
+      <wsdl:input message="tns:RequestComponentPacketsSoapIn" />
+      <wsdl:output message="tns:RequestComponentPacketsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PacketComplete">
+      <wsdl:input message="tns:PacketCompleteSoapIn" />
+      <wsdl:output message="tns:PacketCompleteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PacketScannedImages">
+      <wsdl:input message="tns:PacketScannedImagesSoapIn" />
+      <wsdl:output message="tns:PacketScannedImagesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RescanRequest">
+      <wsdl:input message="tns:RescanRequestSoapIn" />
+      <wsdl:output message="tns:RescanRequestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePirate">
+      <wsdl:input message="tns:CreatePirateSoapIn" />
+      <wsdl:output message="tns:CreatePirateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckPacketStatus">
+      <wsdl:input message="tns:CheckPacketStatusSoapIn" />
+      <wsdl:output message="tns:CheckPacketStatusSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="rmScanningWebWSSoap" type="tns:rmScanningWebWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Ping">
+      <soap:operation soapAction="http://www.esm.rmplc.co.uk/Ping" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PacketArrive">
+      <soap:operation soapAction="http://www.esm.rmplc.co.uk/PacketArrive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PacketOpen">
+      <soap:operation soapAction="http://www.esm.rmplc.co.uk/PacketOpen" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CandidateScript">
+      <soap:operation soapAction="http://www.esm.rmplc.co.uk/CandidateScript" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AttendanceRegister">
+      <soap:operation soapAction="http://www.esm.rmplc.co.uk/AttendanceRegister" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestCentre">
+      <soap:operation soapAction="http://www.esm.rmplc.co.uk/RequestCentre" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestScripts">
+      <soap:operation soapAction="http://www.esm.rmplc.co.uk/RequestScripts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReconciledAttendance">
+      <soap:operation soapAction="http://www.esm.rmplc.co.uk/ReconciledAttendance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReconciledCandidateScript">
+      <soap:operation soapAction="http://www.esm.rmplc.co.uk/ReconciledCandidateScript" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReconciledPacketAdditionalObjects">
+      <soap:operation soapAction="http://www.esm.rmplc.co.uk/ReconciledPacketAdditionalObjects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestRescanRequests">
+      <soap:operation soapAction="http://www.esm.rmplc.co.uk/RequestRescanRequests" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ComponentScanningSetup">
+      <soap:operation soapAction="http://www.esm.rmplc.co.uk/ComponentScanningSetup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestComponentPackets">
+      <soap:operation soapAction="http://www.esm.rmplc.co.uk/RequestComponentPackets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PacketComplete">
+      <soap:operation soapAction="http://www.esm.rmplc.co.uk/PacketComplete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PacketScannedImages">
+      <soap:operation soapAction="http://www.esm.rmplc.co.uk/PacketScannedImages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RescanRequest">
+      <soap:operation soapAction="http://www.esm.rmplc.co.uk/RescanRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePirate">
+      <soap:operation soapAction="http://www.esm.rmplc.co.uk/CreatePirate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckPacketStatus">
+      <soap:operation soapAction="http://www.esm.rmplc.co.uk/CheckPacketStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="rmScanningWebWSSoap12" type="tns:rmScanningWebWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Ping">
+      <soap12:operation soapAction="http://www.esm.rmplc.co.uk/Ping" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PacketArrive">
+      <soap12:operation soapAction="http://www.esm.rmplc.co.uk/PacketArrive" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PacketOpen">
+      <soap12:operation soapAction="http://www.esm.rmplc.co.uk/PacketOpen" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CandidateScript">
+      <soap12:operation soapAction="http://www.esm.rmplc.co.uk/CandidateScript" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AttendanceRegister">
+      <soap12:operation soapAction="http://www.esm.rmplc.co.uk/AttendanceRegister" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestCentre">
+      <soap12:operation soapAction="http://www.esm.rmplc.co.uk/RequestCentre" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestScripts">
+      <soap12:operation soapAction="http://www.esm.rmplc.co.uk/RequestScripts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReconciledAttendance">
+      <soap12:operation soapAction="http://www.esm.rmplc.co.uk/ReconciledAttendance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReconciledCandidateScript">
+      <soap12:operation soapAction="http://www.esm.rmplc.co.uk/ReconciledCandidateScript" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReconciledPacketAdditionalObjects">
+      <soap12:operation soapAction="http://www.esm.rmplc.co.uk/ReconciledPacketAdditionalObjects" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestRescanRequests">
+      <soap12:operation soapAction="http://www.esm.rmplc.co.uk/RequestRescanRequests" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ComponentScanningSetup">
+      <soap12:operation soapAction="http://www.esm.rmplc.co.uk/ComponentScanningSetup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestComponentPackets">
+      <soap12:operation soapAction="http://www.esm.rmplc.co.uk/RequestComponentPackets" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PacketComplete">
+      <soap12:operation soapAction="http://www.esm.rmplc.co.uk/PacketComplete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PacketScannedImages">
+      <soap12:operation soapAction="http://www.esm.rmplc.co.uk/PacketScannedImages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RescanRequest">
+      <soap12:operation soapAction="http://www.esm.rmplc.co.uk/RescanRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePirate">
+      <soap12:operation soapAction="http://www.esm.rmplc.co.uk/CreatePirate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckPacketStatus">
+      <soap12:operation soapAction="http://www.esm.rmplc.co.uk/CheckPacketStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="rmScanningWebWS">
+    <wsdl:port name="rmScanningWebWSSoap" binding="tns:rmScanningWebWSSoap">
+      <soap:address location="https://gder61uat-scanning.assessor.rm.com/rmscanningwebws.asmx" />
+    </wsdl:port>
+    <wsdl:port name="rmScanningWebWSSoap12" binding="tns:rmScanningWebWSSoap12">
+      <soap12:address location="https://gder61uat-scanning.assessor.rm.com/rmscanningwebws.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

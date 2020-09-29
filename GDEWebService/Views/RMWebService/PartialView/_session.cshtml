@@ -1,0 +1,32 @@
+﻿@model IEnumerable<GDEWebService.Models.Session>
+<div class="row">
+
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Create New Session</h5>
+                <p class="card-text">New session for some reason</p>
+                <a href="#" class="btn btn-primary">New Session</a>
+            </div>
+        </div>
+    </div>
+
+    @foreach (var sess in Model)
+    {
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@sess.Name</h5>
+                    <p class="card-text">@sess.SessionIdentifier : @sess.Timeframe</p>
+                    <a href="#" class="btn btn-primary">Select Session</a>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+<div class="btn-group flex" role="group" style="width: 800px;margin-left: 45%;" aria-label="Basic example">
+    <button  type="button" class="btn btn-secondary">Back</button>
+    <button onclick="nextUploadproccess()" type="button" class="btn btn-secondary">Next</button>
+</div>

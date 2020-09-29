@@ -1,0 +1,107 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <div class="container">
+        <div class="row bs-wizard" style="border-bottom:0;">
+
+            <div class="col-xs-3 bs-wizard-step complete">
+                <div class="text-center bs-wizard-stepnum">Step 1</div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a href="#" class="bs-wizard-dot"></a>
+                <div class="bs-wizard-info text-center">Upload Dataset. If dataset has been previously uploaded, click on skip to select which component you would like to create.</div>
+            </div>
+
+            <div class="col-xs-3 bs-wizard-step disabled">
+                <!-- complete -->
+                <div class="text-center bs-wizard-stepnum">Step 2</div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a href="#" class="bs-wizard-dot"></a>
+                <div class="bs-wizard-info text-center">Select or Create session.</div>
+            </div>
+
+            <div class="col-xs-3 bs-wizard-step disabled">
+                <!-- complete -->
+                <div class="text-center bs-wizard-stepnum">Step 3</div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a href="#" class="bs-wizard-dot"></a>
+                <div class="bs-wizard-info text-center">Select Components you would like to create.</div>
+            </div>
+
+            <div class="col-xs-3 bs-wizard-step disabled">
+                <!-- active -->
+                <div class="text-center bs-wizard-stepnum">Step 4</div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a href="#" class="bs-wizard-dot"></a>
+                <div class="bs-wizard-info text-center">Review and conform created components.</div>
+            </div>
+        </div>
+        
+
+        <div class="partialViewHolder">
+
+            @using (Html.BeginForm("ImportCandidates", "RMWebService", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="file-upload">
+                    <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Candidates</button>
+
+                    <div class="image-upload-wrap">
+                        <input class="file-upload-input" name="FileUpload1" type='file' onchange="readURL(this);" accept="dat/*" />
+                        <div class="drag-text">
+                            <h3>Drag and drop a file or select add Candidates</h3>
+                        </div>
+                    </div>
+                    <div class="file-upload-content">
+                        <img class="file-upload-image" src="#" alt="your image" />
+                        <div class="image-title-wrap">
+                            <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-group flex" role="group" style="width: 800px;margin-left: 45%;" aria-label="Basic example">
+                    <button onclick="nextUploadproccess()" type="submit" class="btn btn-secondary">Submit</button>
+                    <button onclick="nextUploadproccess()" type="button" class="btn btn-secondary">Skip</button>
+                </div>
+            }
+
+        </div>
+    </div>
+
+
+
+
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.image-upload-wrap').hide();
+
+                $('.file-upload-image').attr('src', e.target.result);
+                $('.file-upload-content').show();
+
+                $('.image-title').html(input.files[0].name);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+            console.log(input.files[0]);
+        } else {
+            removeUpload();
+        }
+    }
+
+    function removeUpload() {
+        $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+        $('.file-upload-content').hide();
+        $('.image-upload-wrap').show();
+    }
+    $('.image-upload-wrap').bind('dragover', function () {
+        $('.image-upload-wrap').addClass('image-dropping');
+    });
+    $('.image-upload-wrap').bind('dragleave', function () {
+        $('.image-upload-wrap').removeClass('image-dropping');
+    });
+
+</script>
+

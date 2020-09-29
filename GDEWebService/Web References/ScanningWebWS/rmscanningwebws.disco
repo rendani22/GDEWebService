@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="https://gder61uat-scanning.assessor.rm.com/rmscanningwebws.asmx?wsdl" docRef="https://gder61uat-scanning.assessor.rm.com/rmscanningwebws.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="https://gder61uat-scanning.assessor.rm.com/rmscanningwebws.asmx" xmlns:q1="http://www.esm.rmplc.co.uk/" binding="q1:rmScanningWebWSSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="https://gder61uat-scanning.assessor.rm.com/rmscanningwebws.asmx" xmlns:q2="http://www.esm.rmplc.co.uk/" binding="q2:rmScanningWebWSSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

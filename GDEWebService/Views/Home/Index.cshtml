@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+    <div class="row">
+        <div class="card text-center">
+            <div class="card-header">
+                Create Product
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                @Html.ActionLink("Create", "CreateProduct", "Home")
+            </div>
+            <hr />
+        </div>
+        @foreach (var qPaper in Model)
+        {
+            <div class="card text-center">
+                <div class="card-header">
+                    @qPaper.QuestionPaperPartName
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">@qPaper.QuestionPaperIdentifier</h5>
+                    <p class="card-text">Barcode:@qPaper.Barcode Marking Type:@qPaper.MarkingType Syllabus:@qPaper.SyllabusCode </p>
+                    @Html.ActionLink("Update", "questionPaperLayout", "RMWebService", new { QuestionPaperIdentifier = qPaper.QuestionPaperIdentifier }, null)
+                    @Html.ActionLink("Mark Scheme Stucture", "MarkSchemeStructure", "RMWebService", new { QuestionPaperIdentifier = qPaper.QuestionPaperIdentifier }, null)
+                    @Html.ActionLink("Center", "_notification", "RMWebService", new
+                       {
+                           SessionIdentifier = "Comp2",
+                           AssessmentIdentifier = "Comp2",
+                           AssessmentVersion = "1",
+                           ComponentIdentifier = "Comp2",
+                           ComponentVersion = "1"
+                       }, null)
+                    @Html.ActionLink("Cadidate", "_notification", "RMWebService", new
+                       {
+                           SessionIdentifier = "Comp1",
+                           AssessmentIdentifier = "Comp1",
+                           AssessmentVersion = "1",
+                           ComponentIdentifier = "Comp1",
+                           ComponentVersion = "1"
+                       }, null)
+                </div>
+                <div class="card-footer text-muted">
+                    <span class="time">@qPaper.CreatedDate</span>
+                </div>
+            </div>
+            <hr />
+        }
+
+
+
+    </div>
+
+<script>
+    $(document).ready(function () {
+    $('.time').text(function (index, databaseTime) {
+        var dateConvert = new Date(databaseTime.replace(/-/g, "/"));
+        return moment(dateConvert).fromNow();
+    });
+    });
+
+    $('#noti').toast('hide')
+</script>
+
+
+
+

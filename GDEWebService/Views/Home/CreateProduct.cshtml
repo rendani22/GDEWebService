@@ -1,0 +1,169 @@
+﻿
+@{
+    ViewBag.Title = "Create Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Product</h2>
+<hr />
+
+<h3>Product Infomation</h3>
+
+
+<form action="/Home/addProduct" method="post">
+    <div class="form-group">
+        <label for="QualificationShortName">Qualification Short Name</label>
+        <input type="text" class="form-control" name="QualificationShortName" id="QualificationShortName" aria-describedby="emailHelp">
+        <small id="emailHelp" class="form-text text-muted">Short descriptive text</small>
+    </div>
+    <div class="form-group">
+        <label for="AssessmentIndentifier">Assessment Identifier</label>
+        <input type="text" class="form-control" name="AssessmentIndentifier" id="AssessmentIndentifier" aria-describedby="emailHelp">
+        <small id="emailHelp" class="form-text text-muted">This is the value that is displayed in RM Assessor applications. </small>
+    </div>
+    <div class="form-group">
+        <label for="AssessmentName">Assessment Name</label>
+        <input type="text" class="form-control" name="AssessmentName" id="AssessmentName" aria-describedby="emailHelp">
+        <small id="emailHelp" class="form-text text-muted">Name for the assessment</small>
+    </div>
+    <div class="form-group">
+        <label for="AssessmentVersion">Assessment Version</label>
+        <input type="number" class="form-control" name="AssessmentVersion" id="AssessmentVersion" aria-describedby="emailHelp">
+    </div>
+    <div class="form-group">
+        <label for="ComponentIdentifier">Component Identifier</label>
+        <input type="text" class="form-control" maxlength="10" name="ComponentIdentifier" id="ComponentIdentifier" aria-describedby="emailHelp">
+        <small id="emailHelp" class="form-text text-muted">This is the value that is displayed in RM Assessor applications.</small>
+    </div>
+    <div class="form-group">
+        <label for="ComponentName">Component Name</label>
+        <input type="text" class="form-control" name="ComponentName" id="ComponentName" aria-describedby="emailHelp">
+        <small id="emailHelp" class="form-text text-muted">This value is displayed alongside the Component Identifier in some RM Assessor reports.</small>
+    </div>
+    <div class="form-group">
+        <label for="ComponentVersion">Component Version</label>
+        <input type="number" class="form-control" name="ComponentVersion" id="ComponentVersion" aria-describedby="emailHelp">
+    </div>
+
+    <hr />
+
+    <h3>Session Infomation</h3>
+
+    <div class="form-group">
+        <label for="SessionIdentifier">Session Identifier</label>
+        <input type="text" maxlength="10" class="form-control" name="SessionIdentifier" id="SessionIdentifier" aria-describedby="emailHelp">
+        <small id="emailHelp" class="form-text text-muted">Identifier that uniquely identifies a session in RM Assessor</small>
+    </div>
+
+    <div class="form-group">
+        <label for="Name">Session Name</label>
+        <input type="text" class="form-control" name="Name" id="Name" aria-describedby="emailHelp">
+        <small id="emailHelp" class="form-text text-muted">Friendly session name as display in RM Assessor applications</small>
+    </div>
+
+    <div class="form-group">
+        <label for="Timeframe">Time Frame</label>
+        <input type="text" class="form-control" name="Timeframe" id="Timeframe" aria-describedby="emailHelp">
+        <small id="emailHelp" class="form-text text-muted">Non unique code that is returned in the Marks return message eg M08</small>
+    </div>
+
+    <hr />
+
+    <h3>Exam Infomation</h3>
+
+    <div class="form-group">
+        <label for="StartDate">Start Date</label>
+        <input type="datetime-local" class="form-control" name="StartDate" id="StartDate" aria-describedby="emailHelp">
+        <small id="emailHelp" class="form-text text-muted">Date Exam starts.</small>
+    </div>
+
+    <div class="form-group">
+        <label for="StartDatePart">Start Date Part</label>
+        <input type="text" class="form-control" name="StartDatePart" id="StartDatePart" aria-describedby="emailHelp">
+        <small id="emailHelp" class="form-text text-muted">A (am), P (pm), E (eve), D (all day)</small>
+    </div>
+    <div class="form-group">
+        <label for="EndDate">End Date</label>
+        <input type="datetime-local" class="form-control" name="EndDate" id="EndDate" aria-describedby="emailHelp">
+        <small id="emailHelp" class="form-text text-muted">Date Exam Ends. Also used as part of the Candidate Level Exception process.</small>
+    </div>
+
+    <hr />
+
+    <h3>Question Paper Infomation</h3>
+
+    <div class="form-group">
+        <label for="QuestionPaperIdentifier">Question Paper Identifier</label>
+        <input type="text" class="form-control" name="QuestionPaperIdentifier" id="QuestionPaperIdentifier" aria-describedby="emailHelp">
+        <small id="emailHelp" class="form-text text-muted">Unique identifier across products and sessions for this question paper</small>
+    </div>
+
+    <div class="form-group">
+        <label for="Barcode">Barcode</label>
+        <input type="text" class="form-control" name="Barcode" id="Barcode" aria-describedby="emailHelp">
+        <small id="emailHelp" class="form-text text-muted">The barcode that is printed on the question paper. </small>
+    </div>
+
+    <div class="form-group">
+        <label for="QuestionPaperPartName">Question Paper Part Name</label>
+        <input type="text" maxlength="2" class="form-control" name="QuestionPaperPartName" id="QuestionPaperPartName" aria-describedby="emailHelp">
+        <small id="emailHelp" class="form-text text-muted">Used for Exam Products with more than one QP to differentiate the papers.</small>
+    </div>
+
+    <div class="form-group">
+        <label for="MarkingType">Marking Type</label>
+        <select class="form-control" name="MarkingType " id="MarkingType">
+            <option value="MFS">MFS</option>
+            <option value="MFI">MFI</option>
+            <option value="MFO">MFO</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="NameQP">Name</label>
+        <input type="text" class="form-control" name="Name" id="Name" aria-describedby="emailHelp">
+        <small id="emailHelp" class="form-text text-muted">Friendly name that is displayed in RM Assessor applications to identify the Question Paper.</small>
+    </div>
+
+
+    <div class="form-group">
+        <label for="PageCount">Page Count</label>
+        <input type="text" class="form-control" name="PageCount" id="PageCount" aria-describedby="emailHelp">
+    </div>
+
+    <div class="form-group">
+        <label for="SyllabusCode">Syllabus Code</label>
+        <input type="text" class="form-control" name="SyllabusCode" id="SyllabusCode" aria-describedby="emailHelp">
+        <small id="emailHelp" class="form-text text-muted">It is returned as part of the Question Paper entity in return feeds.</small>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+
+
+@*<button class="btn btn-primary" type="button" disabled>
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    Loading...
+</button>
+<script>
+
+    function createProduct() {
+        $.ajax({
+            type: "POST",
+            url: "/markerSelectionCon/showMarker",
+            data: { markerID: id },
+            beforeSend: function () {
+                $('.loader').show();
+            },
+            complete: function () {
+                $('.loader').hide();
+            },
+            success: function (response) {
+                $("#shwoMarkerInfomation").html(response);
+            }
+        });
+    }
+
+</script>*@

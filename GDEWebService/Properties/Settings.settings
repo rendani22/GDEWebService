@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GDEWebService.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="GDEWebService_AssessmentStructureWS_AssessmentStructureWS" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://gder61uat-webservice.assessor.rm.com/AssessmentStructureWS.asmx</Value>
+    </Setting>
+    <Setting Name="GDEWebService_MarkerProvisioningWS_MarkerProvisioningWS" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://gder61uat-webservice.assessor.rm.com/MarkerProvisioningWS.asmx</Value>
+    </Setting>
+    <Setting Name="GDEWebService_SessionCompositionWS_SessionCompositionWS" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://gder61uat-webservice.assessor.rm.com/SessionCompositionWS.asmx</Value>
+    </Setting>
+    <Setting Name="GDEWebService_ScanningWebWS_rmScanningWebWS" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://gder61uat-scanning.assessor.rm.com/rmscanningwebws.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

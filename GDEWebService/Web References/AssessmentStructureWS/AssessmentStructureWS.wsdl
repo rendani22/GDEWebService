@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tns="http://www.rm.com/scoris/WebServices/AssessmentStructureWS/2009/03" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s4="http://www.rm.com/scoris/schemas/2009/03/MarkSchemeStructure" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://www.rm.com/scoris/schemas/2009/03/Product" xmlns:s2="http://www.rm.com/scoris/schemas/2009/03/Layout" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s3="http://www.rm.com/scoris/schemas/2009/03/MarkSchemeAnswer" targetNamespace="http://www.rm.com/scoris/WebServices/AssessmentStructureWS/2009/03" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Assessment Structure Web Service</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.rm.com/scoris/WebServices/AssessmentStructureWS/2009/03">
+      <s:import namespace="http://www.rm.com/scoris/schemas/2009/03/Product" />
+      <s:import namespace="http://www.rm.com/scoris/schemas/2009/03/Layout" />
+      <s:import namespace="http://www.rm.com/scoris/schemas/2009/03/MarkSchemeAnswer" />
+      <s:import namespace="http://www.rm.com/scoris/schemas/2009/03/MarkSchemeStructure" />
+      <s:element name="Product">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RMKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:ProductArguments" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProductResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProductResult" type="tns:ProductReceipt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProductReceipt">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ScorisWSReceipt" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ScorisWSReceipt">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnCode" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Layout">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RMKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" ref="s2:LayoutArguments" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LayoutResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LayoutResult" type="tns:LayoutReceipt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LayoutReceipt">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ScorisWSReceipt" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="MarkSchemeAnswer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RMKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" ref="s3:MarkSchemeAnswerArguments" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MarkSchemeAnswerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MarkSchemeAnswerResult" type="tns:MarkSchemeAnswerReceipt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MarkSchemeAnswerReceipt">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ScorisWSReceipt" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="MarkSchemeStructure">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RMKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" ref="s4:MarkSchemeStructureArguments" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MarkSchemeStructureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MarkSchemeStructureResult" type="tns:MarkSchemeStructureReceipt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MarkSchemeStructureReceipt">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ScorisWSReceipt" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="Ping">
+        <s:complexType />
+      </s:element>
+      <s:element name="PingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PingResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.rm.com/scoris/schemas/2009/03/Product">
+      <s:element name="ProductArguments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="QuestionPaper" nillable="true">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+                  <s:element minOccurs="1" maxOccurs="1" name="MarkingType" nillable="true" type="s:string" />
+                  <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+                  <s:element minOccurs="0" maxOccurs="1" name="PageCount" type="s:int" />
+                  <s:element minOccurs="1" maxOccurs="1" name="QuestionPaperIdentifier" nillable="true" type="s:string" />
+                  <s:element minOccurs="0" maxOccurs="1" name="QuestionPaperPartName" type="s:string" />
+                  <s:element minOccurs="1" maxOccurs="1" name="SyllabusCode" nillable="true" type="s:string" />
+                  <s:element minOccurs="0" maxOccurs="1" name="QuestionPaperPageCharacteristics" type="s1:ArrayOfQuestionPaperPageCharacteristic" />
+                  <s:element minOccurs="0" maxOccurs="1" name="QuestionPaperCharacteristics" type="s1:ArrayOfQuestionPaperCharacteristic" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="1" maxOccurs="1" name="Session" nillable="true">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="1" maxOccurs="1" name="Name" nillable="true" type="s:string" />
+                  <s:element minOccurs="1" maxOccurs="1" name="SessionIdentifier" nillable="true" type="s:string" />
+                  <s:element minOccurs="1" maxOccurs="1" name="Timeframe" nillable="true" type="s:string" />
+                  <s:element minOccurs="0" maxOccurs="1" name="Year" type="s:int" />
+                  <s:element minOccurs="1" maxOccurs="1" name="PasswordResetDate" nillable="true" type="s:dateTime" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="1" maxOccurs="1" name="Product" nillable="true">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="1" maxOccurs="1" name="BusinessStreamIndentifier" nillable="true" type="s:string" />
+                  <s:element minOccurs="0" maxOccurs="1" name="QualificationShortName" type="s:string" />
+                  <s:element minOccurs="1" maxOccurs="1" name="AssessmentIndentifier" nillable="true" type="s:string" />
+                  <s:element minOccurs="1" maxOccurs="1" name="AssessmentName" nillable="true" type="s:string" />
+                  <s:element minOccurs="1" maxOccurs="1" name="AssessmentVersion" type="s:int" />
+                  <s:element minOccurs="1" maxOccurs="1" name="ComponentIdentifier" nillable="true" type="s:string" />
+                  <s:element minOccurs="1" maxOccurs="1" name="ComponentName" nillable="true" type="s:string" />
+                  <s:element minOccurs="1" maxOccurs="1" name="ComponentVersion" type="s:int" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="1" maxOccurs="1" name="Exam" nillable="true">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="ArchiveDate" type="s:dateTime" />
+                  <s:element minOccurs="1" maxOccurs="1" name="EndDate" type="s:dateTime" />
+                  <s:element minOccurs="0" maxOccurs="1" name="EndDatePart" type="s:string" />
+                  <s:element minOccurs="1" maxOccurs="1" name="StartDate" type="s:dateTime" />
+                  <s:element minOccurs="1" maxOccurs="1" name="StartDatePart" nillable="true" type="s:string" />
+                  <s:element minOccurs="0" maxOccurs="1" name="ExamCharacteristics" type="s1:ArrayOfExamCharacteristic" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfQuestionPaperPageCharacteristic">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="QuestionPaperPageCharacteristic" type="s1:QuestionPaperPageCharacteristic" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="QuestionPaperPageCharacteristic">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Descriptor" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Page" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfQuestionPaperCharacteristic">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="QuestionPaperCharacteristic" type="s1:QuestionPaperCharacteristic" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="QuestionPaperCharacteristic">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Descriptor" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Value" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfExamCharacteristic">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ExamCharacteristic" type="s1:ExamCharacteristic" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ExamCharacteristic">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Descriptor" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Value" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.rm.com/scoris/schemas/2009/03/Layout">
+      <s:element name="LayoutArguments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="BusinessStreamIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="QuestionPaperIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImageClusters" nillable="true" type="s2:ArrayOfImageCluster" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfImageCluster">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ImageCluster" nillable="true" type="s2:ImageCluster" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ImageCluster">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ImageClusterIdentifier" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sequence" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Name" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ImageZones" nillable="true" type="s2:ArrayOfImageZone" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfImageZone">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ImageZone" nillable="true" type="s2:ImageZone" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ImageZone">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ImageZoneIdentifier" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Name" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sequence" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SourcePage" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Height" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Left" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Top" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Width" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ImageFileFormat" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OutputPageNumber" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.rm.com/scoris/schemas/2009/03/MarkSchemeAnswer">
+      <s:element name="MarkSchemeAnswerArguments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="BusinessStreamIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="QuestionPaperIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="QuestionItemGroupIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="MarkSchemes" nillable="true" type="s3:ArrayOfMarkScheme" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMarkScheme">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MarkScheme" type="s3:MarkScheme" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MarkScheme">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MarkSchemeIdentifier" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MarkTypeIdentifier" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MarkOptions" nillable="true" type="s3:ArrayOfMarkOption" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMarkOption">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MarkOption" type="s3:MarkOption" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MarkOption">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MarkOptionIdentifier" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumericValue" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.rm.com/scoris/schemas/2009/03/MarkSchemeStructure">
+      <s:element name="MarkSchemeStructureArguments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="BusinessStreamIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="QuestionPaperIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="QuestionItemGroups" nillable="true" type="s4:ArrayOfQuestionItemGroup" />
+            <s:element minOccurs="1" maxOccurs="1" name="MarkingClusters" nillable="true" type="s4:ArrayOfMarkingCluster" />
+            <s:element minOccurs="1" maxOccurs="1" name="MarkingItems" nillable="true" type="s4:ArrayOfMarkingItem" />
+            <s:element minOccurs="1" maxOccurs="1" name="MarkTypes" nillable="true" type="s4:ArrayOfMarkType" />
+            <s:element minOccurs="1" maxOccurs="1" name="MarkSchemes" nillable="true" type="s4:ArrayOfMarkScheme" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfQuestionItemGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="QuestionItemGroup" type="s4:QuestionItemGroup" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="QuestionItemGroup">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="QuestionItemGroupIdentifier" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Name" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultGrace" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="E-StandardisationIndicator" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExpectedMaxResponses" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MarkingApplicationIdentifier" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MarkingCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaximumCacheLimit" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaximumConcurrentMarkingLimit" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MarkingStartTime" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MarkingEndTime" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Re-markPercentage" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ObjectType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MarkingTolerance" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TMDTolerance" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ShowQuestionTotals" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="MarkingStartDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="MarkingEndDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="QuestionItemGroupLinkIdentifier" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GroupingIdentifier" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaxQns" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Characteristics" type="s4:ArrayOfCharacteristic" />
+          <s:element minOccurs="0" maxOccurs="1" name="Annotations" type="s4:ArrayOfAnnotation" />
+          <s:element minOccurs="0" maxOccurs="1" name="E-StandardisationCreationTargets" type="s4:ArrayOfEStandardisationCreationTarget" />
+          <s:element minOccurs="0" maxOccurs="1" name="SampleRules" type="s4:ArrayOfSampleRule" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExceptionTypes" type="s4:ArrayOfExceptionType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCharacteristic">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Characteristic" type="s4:Characteristic" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Characteristic">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Descriptor" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Value" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAnnotation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Annotation" type="s4:Annotation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Annotation">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Descriptor" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MarkTypeIdentifier" nillable="true" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumericValue" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShortcutKey" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SingleAnnotationMark" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfEStandardisationCreationTarget">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="E-StandardisationCreationTarget" type="s4:E-StandardisationCreationTarget" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="E-StandardisationCreationTarget">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MarkingModeName" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Target" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSampleRule">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SampleRule" type="s4:SampleRule" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SampleRule">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="RuleName" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Lower" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SampleTrigger" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SampleTriggerType" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SampleSize" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfExceptionType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ExceptionType" type="s4:ExceptionType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ExceptionType">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Descriptor" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMarkingCluster">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MarkingCluster" type="s4:MarkingCluster" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MarkingCluster">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MarkingClusterIdentifier" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Name" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sequence" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="MaximumExpectedResponses" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParentMarkingClusterIdentifier" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReuseRIGSequence" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaxQns" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SecMin" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMarkingItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MarkingItem" type="s4:MarkingItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MarkingItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MarkingItemIdentifier" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayLabel" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="QuestionNumber" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="QuestionPart" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MarkingClusterIdentifier" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImageClusterIdentifier" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sequence" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ElementMarkType" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="QuestionTag" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReuseRIGSequence" type="s:short" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMarkType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MarkType" type="s4:MarkType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MarkType">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MarkTypeIdentifier" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Name" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MaximumNumericMark" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="MinimumNumericMark" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Step" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumericIndicator" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="AllowNoResponse" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="DefaultMark" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="DefaultMarkOptionIdentifier" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="MarkOptions" type="s4:ArrayOfMarkOption" />
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayLabel" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MarkTypeVariety" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMarkOption">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MarkOption" type="s4:MarkOption" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MarkOption">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MarkOptionIdentifier" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DisplayLabel" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Band" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumericValue" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMarkScheme">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MarkScheme" type="s4:MarkScheme" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MarkScheme">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MarkSchemeIdentifier" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MarkTypeIdentifier" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="MarkingItemIdentifier" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="MarkingClusterIdentifier" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sequence" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="WholenumberIndicator" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumericMarkingTolerance" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="MandateComment" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReuseRIGSequence" type="s:short" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ProductSoapIn">
+    <wsdl:part name="parameters" element="tns:Product" />
+  </wsdl:message>
+  <wsdl:message name="ProductSoapOut">
+    <wsdl:part name="parameters" element="tns:ProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="LayoutSoapIn">
+    <wsdl:part name="parameters" element="tns:Layout" />
+  </wsdl:message>
+  <wsdl:message name="LayoutSoapOut">
+    <wsdl:part name="parameters" element="tns:LayoutResponse" />
+  </wsdl:message>
+  <wsdl:message name="MarkSchemeAnswerSoapIn">
+    <wsdl:part name="parameters" element="tns:MarkSchemeAnswer" />
+  </wsdl:message>
+  <wsdl:message name="MarkSchemeAnswerSoapOut">
+    <wsdl:part name="parameters" element="tns:MarkSchemeAnswerResponse" />
+  </wsdl:message>
+  <wsdl:message name="MarkSchemeStructureSoapIn">
+    <wsdl:part name="parameters" element="tns:MarkSchemeStructure" />
+  </wsdl:message>
+  <wsdl:message name="MarkSchemeStructureSoapOut">
+    <wsdl:part name="parameters" element="tns:MarkSchemeStructureResponse" />
+  </wsdl:message>
+  <wsdl:message name="PingSoapIn">
+    <wsdl:part name="parameters" element="tns:Ping" />
+  </wsdl:message>
+  <wsdl:message name="PingSoapOut">
+    <wsdl:part name="parameters" element="tns:PingResponse" />
+  </wsdl:message>
+  <wsdl:portType name="AssessmentStructureWSSoap">
+    <wsdl:operation name="Product">
+      <wsdl:input message="tns:ProductSoapIn" />
+      <wsdl:output message="tns:ProductSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Layout">
+      <wsdl:input message="tns:LayoutSoapIn" />
+      <wsdl:output message="tns:LayoutSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MarkSchemeAnswer">
+      <wsdl:input message="tns:MarkSchemeAnswerSoapIn" />
+      <wsdl:output message="tns:MarkSchemeAnswerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MarkSchemeStructure">
+      <wsdl:input message="tns:MarkSchemeStructureSoapIn" />
+      <wsdl:output message="tns:MarkSchemeStructureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <wsdl:input message="tns:PingSoapIn" />
+      <wsdl:output message="tns:PingSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AssessmentStructureWSSoap" type="tns:AssessmentStructureWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Product">
+      <soap:operation soapAction="http://www.rm.com/scoris/WebServices/AssessmentStructureWS/2009/03/Product" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Layout">
+      <soap:operation soapAction="http://www.rm.com/scoris/WebServices/AssessmentStructureWS/2009/03/Layout" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MarkSchemeAnswer">
+      <soap:operation soapAction="http://www.rm.com/scoris/WebServices/AssessmentStructureWS/2009/03/MarkSchemeAnswer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MarkSchemeStructure">
+      <soap:operation soapAction="http://www.rm.com/scoris/WebServices/AssessmentStructureWS/2009/03/MarkSchemeStructure" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <soap:operation soapAction="http://www.rm.com/scoris/WebServices/AssessmentStructureWS/2009/03/Ping" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AssessmentStructureWSSoap12" type="tns:AssessmentStructureWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Product">
+      <soap12:operation soapAction="http://www.rm.com/scoris/WebServices/AssessmentStructureWS/2009/03/Product" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Layout">
+      <soap12:operation soapAction="http://www.rm.com/scoris/WebServices/AssessmentStructureWS/2009/03/Layout" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MarkSchemeAnswer">
+      <soap12:operation soapAction="http://www.rm.com/scoris/WebServices/AssessmentStructureWS/2009/03/MarkSchemeAnswer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MarkSchemeStructure">
+      <soap12:operation soapAction="http://www.rm.com/scoris/WebServices/AssessmentStructureWS/2009/03/MarkSchemeStructure" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <soap12:operation soapAction="http://www.rm.com/scoris/WebServices/AssessmentStructureWS/2009/03/Ping" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AssessmentStructureWS">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Assessment Structure Web Service</wsdl:documentation>
+    <wsdl:port name="AssessmentStructureWSSoap" binding="tns:AssessmentStructureWSSoap">
+      <soap:address location="https://gder61uat-webservice.assessor.rm.com/AssessmentStructureWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AssessmentStructureWSSoap12" binding="tns:AssessmentStructureWSSoap12">
+      <soap12:address location="https://gder61uat-webservice.assessor.rm.com/AssessmentStructureWS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

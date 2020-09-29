@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tns="http://www.rm.com/ScorisWebServices/SessionCompositionWS/2009/03" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s4="http://www.rm.com/scoris/schemas/2009/03/Packets" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s5="http://www.rm.com/scoris/schemas/2009/03/MarkerResponsibilities" xmlns:s1="http://www.rm.com/scoris/schemas/2009/03/CandidateEntries" xmlns:s2="http://www.rm.com/scoris/schemas/2009/03/Candidate" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s3="http://www.rm.com/scoris/schemas/2009/03/Centres" targetNamespace="http://www.rm.com/ScorisWebServices/SessionCompositionWS/2009/03" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Session Composition Web Service</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.rm.com/ScorisWebServices/SessionCompositionWS/2009/03">
+      <s:import namespace="http://www.rm.com/scoris/schemas/2009/03/CandidateEntries" />
+      <s:import namespace="http://www.rm.com/scoris/schemas/2009/03/Candidate" />
+      <s:import namespace="http://www.rm.com/scoris/schemas/2009/03/Centres" />
+      <s:import namespace="http://www.rm.com/scoris/schemas/2009/03/Packets" />
+      <s:import namespace="http://www.rm.com/scoris/schemas/2009/03/MarkerResponsibilities" />
+      <s:element name="CandidateEntries">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RMKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:CandidateEntriesArguments" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CandidateEntriesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CandidateEntriesResult" type="tns:CandidateEntriesReceipt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CandidateEntriesReceipt">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ScorisWSReceipt" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ScorisWSReceipt">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnCode" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Candidate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RMKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" ref="s2:CandidateArguments" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CandidateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CandidateResult" type="tns:CandidateReceipt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CandidateReceipt">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ScorisWSReceipt" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="Centres">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RMKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" ref="s3:CentreArguments" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CentresResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CentresResult" type="tns:CentresReceipt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CentresReceipt">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ScorisWSReceipt" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="Packets">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RMKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" ref="s4:PacketArguments" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PacketsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PacketsResult" type="tns:PacketsReceipt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PacketsReceipt">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ScorisWSReceipt" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="MarkerResponsibilities">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RMKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" ref="s5:MarkerResponsibilitiesArguments" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MarkerResponsibilitiesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MarkerResponsibilitiesResult" type="tns:MarkerResponsibilitiesReceipt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MarkerResponsibilitiesReceipt">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ScorisWSReceipt" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="Ping">
+        <s:complexType />
+      </s:element>
+      <s:element name="PingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PingResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.rm.com/scoris/schemas/2009/03/CandidateEntries">
+      <s:element name="CandidateEntriesArguments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="BusinessStreamIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="SessionIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AssessmentIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AssessmentVersion" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ComponentIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ComponentVersion" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CentreIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CentrePartIdentifier" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="unbounded" name="CandidateEntries" nillable="true" type="s1:CandidateEntry" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CandidateEntry">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UniqueCandidateIdentifier" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CentreCandidateIdentifier" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CandidateName" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Gender" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DOB" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="MarkingTargetDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="TestDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Attributes" type="s1:CandidateAttribute" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialistResponseMarkingType" type="s1:SpecialistResponseMarkingType" />
+          <s:element minOccurs="0" maxOccurs="1" name="AttendanceStatus" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AllocationPriority" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Remove" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CandidateAttribute">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Descriptor" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Value" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SpecialistResponseMarkingType">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Type" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="QuestionItemGroupIdentifier" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.rm.com/scoris/schemas/2009/03/Candidate">
+      <s:element name="CandidateArguments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="BusinessStreamIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="SessionIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AssessmentIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AssessmentVersion" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ComponentIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ComponentVersion" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="QuestionPaperIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CentreIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CentrePartIdentifier" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CentreCandidateIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AdditionalInfo" nillable="true" />
+            <s:element minOccurs="0" maxOccurs="unbounded" name="ResponseFiles" type="s2:ResponseFile" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseFile">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ResponseFileIdentifier" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseFileContent" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.rm.com/scoris/schemas/2009/03/Centres">
+      <s:element name="CentreArguments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="BusinessStreamIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="SessionIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AssessmentIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AssessmentVersion" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ComponentIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ComponentVersion" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CentreIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CentrePartIdentifier" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.rm.com/scoris/schemas/2009/03/Packets">
+      <s:element name="PacketArguments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="BusinessStreamIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="SessionIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CentreIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AssessmentIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AssessmentVersion" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ComponentIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ComponentVersion" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CentrePartIdentifier" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsScanningScriptCreated" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="Packets" nillable="true" type="s4:ArrayOfPacket" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPacket">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Packets" type="s4:Packet" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Packet">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PacketBarcode" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MarkerIdentifier" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MarkerType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Surname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Initials" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Centresplitnumber" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstCentreCandidateIdentifier" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastCentreCandidateIdentifier" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Packetstatus" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.rm.com/scoris/schemas/2009/03/MarkerResponsibilities">
+      <s:element name="MarkerResponsibilitiesArguments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="BusinessStreamIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="SessionIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AssessmentIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AssessmentVersion" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ComponentIdentifier" nillable="true" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ComponentVersion" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="QuestionItemGroupIdentifier" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="RemoveMarker" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="Marker" nillable="true" type="s5:Marker" />
+            <s:element minOccurs="0" maxOccurs="1" name="ParentMarker" type="s5:ParentMarker" />
+            <s:element minOccurs="0" maxOccurs="1" name="StandardisationParentMarker" type="s5:ParentMarker" />
+            <s:element minOccurs="1" maxOccurs="1" name="Targets" nillable="true" type="s5:ArrayOfTarget" />
+            <s:element minOccurs="0" maxOccurs="1" name="SpecialistResponseMarkingTypes" type="s5:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="Centres" nillable="true" type="s5:ArrayOfEligibilityCentre" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Marker">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MarkerIdentifier" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MarkerType" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RoleName" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Priority" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DownloadAtypicals" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="StandardisationTeamIndicator" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Attributes" type="s5:MarkerAttribute" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MarkerAttribute">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Descriptor" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Value" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ParentMarker">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MarkerIdentifier" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MarkerType" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTarget">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Target" type="s5:Target" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Target">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TargetType" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaximumMarkingCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MarkingCompletionDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Attributes" type="s5:TargetAttribute" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TargetAttribute">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Descriptor" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Value" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SpecialistResponseMarkingType" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfEligibilityCentre">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Centre" type="s5:EligibilityCentre" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EligibilityCentre">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CentreIdentifier" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CentrePartIdentifier" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="EligibilityType" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Candidates" type="s5:ArrayOfString1" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString1">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CentreCandidateIdentifier" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CandidateEntriesSoapIn">
+    <wsdl:part name="parameters" element="tns:CandidateEntries" />
+  </wsdl:message>
+  <wsdl:message name="CandidateEntriesSoapOut">
+    <wsdl:part name="parameters" element="tns:CandidateEntriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="CandidateSoapIn">
+    <wsdl:part name="parameters" element="tns:Candidate" />
+  </wsdl:message>
+  <wsdl:message name="CandidateSoapOut">
+    <wsdl:part name="parameters" element="tns:CandidateResponse" />
+  </wsdl:message>
+  <wsdl:message name="CentresSoapIn">
+    <wsdl:part name="parameters" element="tns:Centres" />
+  </wsdl:message>
+  <wsdl:message name="CentresSoapOut">
+    <wsdl:part name="parameters" element="tns:CentresResponse" />
+  </wsdl:message>
+  <wsdl:message name="PacketsSoapIn">
+    <wsdl:part name="parameters" element="tns:Packets" />
+  </wsdl:message>
+  <wsdl:message name="PacketsSoapOut">
+    <wsdl:part name="parameters" element="tns:PacketsResponse" />
+  </wsdl:message>
+  <wsdl:message name="MarkerResponsibilitiesSoapIn">
+    <wsdl:part name="parameters" element="tns:MarkerResponsibilities" />
+  </wsdl:message>
+  <wsdl:message name="MarkerResponsibilitiesSoapOut">
+    <wsdl:part name="parameters" element="tns:MarkerResponsibilitiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="PingSoapIn">
+    <wsdl:part name="parameters" element="tns:Ping" />
+  </wsdl:message>
+  <wsdl:message name="PingSoapOut">
+    <wsdl:part name="parameters" element="tns:PingResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SessionCompositionWSSoap">
+    <wsdl:operation name="CandidateEntries">
+      <wsdl:input message="tns:CandidateEntriesSoapIn" />
+      <wsdl:output message="tns:CandidateEntriesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Candidate">
+      <wsdl:input message="tns:CandidateSoapIn" />
+      <wsdl:output message="tns:CandidateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Centres">
+      <wsdl:input message="tns:CentresSoapIn" />
+      <wsdl:output message="tns:CentresSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Packets">
+      <wsdl:input message="tns:PacketsSoapIn" />
+      <wsdl:output message="tns:PacketsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MarkerResponsibilities">
+      <wsdl:input message="tns:MarkerResponsibilitiesSoapIn" />
+      <wsdl:output message="tns:MarkerResponsibilitiesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <wsdl:input message="tns:PingSoapIn" />
+      <wsdl:output message="tns:PingSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SessionCompositionWSSoap" type="tns:SessionCompositionWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CandidateEntries">
+      <soap:operation soapAction="http://www.rm.com/ScorisWebServices/SessionCompositionWS/2009/03/CandidateEntries" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Candidate">
+      <soap:operation soapAction="http://www.rm.com/ScorisWebServices/SessionCompositionWS/2009/03/Candidate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Centres">
+      <soap:operation soapAction="http://www.rm.com/ScorisWebServices/SessionCompositionWS/2009/03/Centres" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Packets">
+      <soap:operation soapAction="http://www.rm.com/ScorisWebServices/SessionCompositionWS/2009/03/Packets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MarkerResponsibilities">
+      <soap:operation soapAction="http://www.rm.com/ScorisWebServices/SessionCompositionWS/2009/03/MarkerResponsibilities" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <soap:operation soapAction="http://www.rm.com/ScorisWebServices/SessionCompositionWS/2009/03/Ping" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SessionCompositionWSSoap12" type="tns:SessionCompositionWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CandidateEntries">
+      <soap12:operation soapAction="http://www.rm.com/ScorisWebServices/SessionCompositionWS/2009/03/CandidateEntries" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Candidate">
+      <soap12:operation soapAction="http://www.rm.com/ScorisWebServices/SessionCompositionWS/2009/03/Candidate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Centres">
+      <soap12:operation soapAction="http://www.rm.com/ScorisWebServices/SessionCompositionWS/2009/03/Centres" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Packets">
+      <soap12:operation soapAction="http://www.rm.com/ScorisWebServices/SessionCompositionWS/2009/03/Packets" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MarkerResponsibilities">
+      <soap12:operation soapAction="http://www.rm.com/ScorisWebServices/SessionCompositionWS/2009/03/MarkerResponsibilities" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <soap12:operation soapAction="http://www.rm.com/ScorisWebServices/SessionCompositionWS/2009/03/Ping" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SessionCompositionWS">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Session Composition Web Service</wsdl:documentation>
+    <wsdl:port name="SessionCompositionWSSoap" binding="tns:SessionCompositionWSSoap">
+      <soap:address location="https://gder61uat-webservice.assessor.rm.com/SessionCompositionWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SessionCompositionWSSoap12" binding="tns:SessionCompositionWSSoap12">
+      <soap12:address location="https://gder61uat-webservice.assessor.rm.com/SessionCompositionWS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
