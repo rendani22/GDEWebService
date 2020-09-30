@@ -454,7 +454,7 @@ namespace GDEWebService.Controllers
         }
 
         [HttpPost]
-        public PartialViewResult ImportCandidates(HttpPostedFileBase FileUpload1)
+        public void ImportCandidates(HttpPostedFileBase FileUpload1)
         {
 
             RM_GDEContext rM_GDEContext = new RM_GDEContext();
@@ -466,8 +466,14 @@ namespace GDEWebService.Controllers
             while (!csvReader.EndOfStream)
             {
                 csvValues = csvReader.ReadLine().Split('#').Where(x => !String.IsNullOrEmpty(x)).ToArray();
-                string[] insertToDatabase = csvValues[0].Split('\t');
-                if(firstLine != 0)
+                //if (csvValues.Length < 2)
+                //{
+                //    return this.PartialView("Error");
+                //}
+
+                string[] insertToDatabase = csvValues;
+
+                if (firstLine != 0)
                 {
                     var candidates = new Candidates
                     {
@@ -507,7 +513,6 @@ namespace GDEWebService.Controllers
                 firstLine++;
             }
 
-            return this.PartialView("PartialView/_session");
         }
 
     }

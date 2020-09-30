@@ -3,8 +3,7 @@
 //01. StartFeeds
 
 
-//Table of contents
-
+//End Table of contents
 
 
 
@@ -12,13 +11,7 @@
 var currentStatus = "upload";
 
 function nextUploadproccess() {
-
-    if (currentStatus == "upload") {
-        currentStatus = "session";
-    } else if (currentStatus == "session") {
-        currentStatus = "component";
-    }
-
+    console.log("Works");
 
     $.ajax({
         url: "/RMWebService/uploadProcess",

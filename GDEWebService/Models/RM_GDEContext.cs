@@ -29,8 +29,7 @@ namespace GDEWebService.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=localhost;Database=RM_GDE;User Id=sa;Password=Laser2019; Trusted_Connection=True; Integrated Security=false;MultipleActiveResultSets=true;");
+                optionsBuilder.UseSqlServer("Server=156.38.161.170,1433;Database=RM_GDE;User Id=sa;Password=Laser2020; Trusted_Connection=True; Integrated Security=false;MultipleActiveResultSets=true;");
             }
         }
 
