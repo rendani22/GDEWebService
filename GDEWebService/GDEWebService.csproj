@@ -481,6 +481,8 @@
     <Content Include="Views\Scanning\Index.cshtml" />
     <Content Include="Views\RMWebService\PartialView\_session.cshtml" />
     <Content Include="Views\RMWebService\PartialView\_component.cshtml" />
+    <Content Include="Views\RMWebService\PartialView\_overview.cshtml" />
+    <Content Include="Views\RMWebService\PartialView\_upload.cshtml" />
     <None Include="Web References\AssessmentStructureWS\AssessmentStructureWS.disco" />
     <None Include="Web References\MarkerProvisioningWS\MarkerProvisioningWS.disco" />
     <Content Include="Web References\ScanningWebWS\AttendanceRegisterResult.datasource">

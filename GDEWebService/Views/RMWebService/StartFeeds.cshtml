@@ -1,70 +1,215 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    <div class="container">
-        <div class="row bs-wizard" style="border-bottom:0;">
 
-            <div class="col-xs-3 bs-wizard-step complete">
-                <div class="text-center bs-wizard-stepnum">Step 1</div>
-                <div class="progress"><div class="progress-bar"></div></div>
-                <a href="#" class="bs-wizard-dot"></a>
-                <div class="bs-wizard-info text-center">Upload Dataset. If dataset has been previously uploaded, click on skip to select which component you would like to create.</div>
-            </div>
+<style>
+    .btn-success {
+        color: #fff;
+        background-color: #337ab7;
+        border-color: #337ab7;
+    }
 
-            <div class="col-xs-3 bs-wizard-step disabled">
-                <!-- complete -->
-                <div class="text-center bs-wizard-stepnum">Step 2</div>
-                <div class="progress"><div class="progress-bar"></div></div>
-                <a href="#" class="bs-wizard-dot"></a>
-                <div class="bs-wizard-info text-center">Select or Create session.</div>
-            </div>
+        .btn-success:hover {
+            color: #fff;
+            background-color: #337ab7;
+            border-color: #337ab7;
+        }
 
-            <div class="col-xs-3 bs-wizard-step disabled">
-                <!-- complete -->
-                <div class="text-center bs-wizard-stepnum">Step 3</div>
-                <div class="progress"><div class="progress-bar"></div></div>
-                <a href="#" class="bs-wizard-dot"></a>
-                <div class="bs-wizard-info text-center">Select Components you would like to create.</div>
-            </div>
+    .btn-circle {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        padding: 6px 0;
+        font-size: 12px;
+        line-height: 1.428571429;
+        border-radius: 50px;
+    }
 
-            <div class="col-xs-3 bs-wizard-step disabled">
-                <!-- active -->
-                <div class="text-center bs-wizard-stepnum">Step 4</div>
-                <div class="progress"><div class="progress-bar"></div></div>
-                <a href="#" class="bs-wizard-dot"></a>
-                <div class="bs-wizard-info text-center">Review and conform created components.</div>
-            </div>
+    .btn-success.disabled:hover, .btn-success[disabled]:hover, fieldset[disabled] .btn-success:hover, .btn-success.disabled:focus, .btn-success[disabled]:focus, fieldset[disabled] .btn-success:focus, .btn-success.disabled.focus, .btn-success[disabled].focus, fieldset[disabled] .btn-success.focus {
+        background-color: #337ab7;
+        border-color: #337ab7;
+    }
+</style>
+
+
+<!--<div class="container">
+    <div class="row bs-wizard" style="border-bottom:0;">
+
+        <div class="col-xs-3 bs-wizard-step complete">
+            <div class="text-center bs-wizard-stepnum">Step 1</div>
+            <div class="progress"><div class="progress-bar"></div></div>
+            <a href="#" class="bs-wizard-dot uploadC"></a>
+            <div class="bs-wizard-info text-center">Upload Dataset. If dataset has been previously uploaded, click on skip to select which component you would like to create.</div>
         </div>
-        
 
-        <div class="partialViewHolder">
+        <div class="col-xs-3 bs-wizard-step">-->
+<!-- complete -->
+<!--<div class="text-center bs-wizard-stepnum">Step 2</div>
+    <div class="progress"><div class="progress-bar"></div></div>
+    <a href="#" class="bs-wizard-dot sessionC"></a>
+    <div class="bs-wizard-info text-center">Select or Create session.</div>
+</div>
 
-            @using (Html.BeginForm("ImportCandidates", "RMWebService", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-                <div class="file-upload">
-                    <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Candidates</button>
+<div class="col-xs-3 bs-wizard-step">-->
+<!-- complete -->
+<!--<div class="text-center bs-wizard-stepnum">Step 3</div>
+    <div class="progress"><div class="progress-bar"></div></div>
+    <a href="#" class="bs-wizard-dot compC"></a>
+    <div class="bs-wizard-info text-center">Select Components you would like to create.</div>
+</div>
 
-                    <div class="image-upload-wrap">
-                        <input class="file-upload-input" name="FileUpload1" type='file' onchange="readURL(this);" accept="dat/*" />
-                        <div class="drag-text">
-                            <h3>Drag and drop a file or select add Candidates</h3>
-                        </div>
-                    </div>
-                    <div class="file-upload-content">
-                        <img class="file-upload-image" src="#" alt="your image" />
-                        <div class="image-title-wrap">
-                            <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="btn-group flex" role="group" style="width: 800px;margin-left: 45%;" aria-label="Basic example">
-                    <button onclick="nextUploadproccess()" type="submit" class="btn btn-secondary">Submit</button>
-                    <button onclick="nextUploadproccess()" type="button" class="btn btn-secondary">Skip</button>
-                </div>
-            }
+<div class="col-xs-3 bs-wizard-step">-->
+<!-- active -->
+<!--<div class="text-center bs-wizard-stepnum">Step 4</div>
+        <div class="progress"><div class="progress-bar"></div></div>
+        <a href="#" class="bs-wizard-dot"></a>
+        <div class="bs-wizard-info text-center">Review and conform created components.</div>
+    </div>
+</div>-->
 
+
+
+<div class="container" style="padding:20px;">
+    <div class="stepwizard">
+        <div class="stepwizard-row setup-panel">
+            <div class="stepwizard-step col-xs-3">
+                <a href="#step-1" type="button" class="btn btn-success btn-circle">1</a>
+                <p><small>Upload Dataset</small></p>
+            </div>
+            <div class="stepwizard-step col-xs-3">
+                <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+                <p><small>Create Session</small></p>
+            </div>
+            <div class="stepwizard-step col-xs-3">
+                <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                <p><small>Create Component</small></p>
+            </div>
+            <div class="stepwizard-step col-xs-3">
+                <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
+                <p><small>Overview</small></p>
+            </div>
         </div>
     </div>
+    @*<div class="row">
+        <div class="card col-lg-4 col-md-6 col-sm-12">
+            <div class="card-header">
+                Upload
+            </div>
+            <div class="card-body">
+                <h5>Upload Dataset. If dataset has been previously uploaded, click on skip to select which component you would like to create.</h5>
+                @Html.Partial("~/Views/RMWebService/PartialView/_upload.cshtml")
+            </div>
+        </div>
+        <div style="width: 20px;"></div>
+        <div class="card col-lg-4 col-md-4 col-12">
+            <div class="card-header">
+                Sessions
+            </div>
+            <div class="card-body">
+                <h5>Create new Sessions or View existing Sessions.</h5>
+                @Html.Partial("~/Views/RMWebService/PartialView/_session.cshtml")
+            </div>
+        </div>
+        <div style="width: 20px"></div>
+        <div class="card col-lg-4 col-md-4 col-sm-12">
+            <div class="card-header">
+                Components
+            </div>
+            <div class="card-body">
+                <h5>Create new Components or View existing Components.</h5>
+                @Html.Partial("~/Views/RMWebService/PartialView/_component.cshtml")
+            </div>
+        </div>*@
+
+
+    <form role="form">
+        <div class="panel panel-primary setup-content" id="step-1">
+            <div class="panel-heading">
+                <h3 class="panel-title">Upload Dataset. If dataset has been previously uploaded, click on skip to select which component you would like to create.</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    @Html.Partial("~/Views/RMWebService/PartialView/_upload.cshtml")
+                </div>
+                <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+            </div>
+        </div>
+
+        <div class="panel panel-primary setup-content" id="step-2">
+            <div class="panel-heading">
+                <h3 class="panel-title">Create Session</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    @Html.Partial("~/Views/RMWebService/PartialView/_session.cshtml")
+                </div>
+                @*<button class="btn btn-primary nextBtn pull-right" type="button">Next</button>*@
+            </div>
+        </div>
+
+        <div class="panel panel-primary setup-content" id="step-3">
+            <div class="panel-heading">
+                <h3 class="panel-title">Create Component</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    @Html.Partial("~/Views/RMWebService/PartialView/_component.cshtml")
+                </div>
+                <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+            </div>
+        </div>
+
+        <div class="panel panel-primary setup-content" id="step-4">
+            <div class="panel-heading">
+                <h3 class="panel-title">Overview</h3>
+            </div>
+            <div class="panel-body">
+                @Html.Partial("~/Views/RMWebService/PartialView/_overview.cshtml")
+            </div>
+            @*<button class="btn btn-success pull-right" type="submit">Finish!</button>*@
+        </div>
+</div>
+    </form>
+</div>
+
+
+
+
+@*<div class="partialViewHolder">
+    <div class="uploadCon">@Html.Partial("~/Views/RMWebService/PartialView/_upload.cshtml")</div>
+    <div class="sessionCon">@Html.Partial("~/Views/RMWebService/PartialView/_session.cshtml")</div>
+    <div class="compCon">@Html.Partial("~/Views/RMWebService/PartialView/_component.cshtml")</div>*@
+@*@{Html.RenderPartial("~/Views/RMWebService/PartialView/_component.cshtml");}*@
+
+
+
+@*@using (Html.BeginForm("ImportCandidates", "RMWebService", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="file-upload">
+            <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Candidates</button>
+
+            <div class="image-upload-wrap">
+                <input class="file-upload-input" name="FileUpload1" type='file' onchange="readURL(this);" accept="dat/*" />
+                <div class="drag-text">
+                    <h3>Drag and drop a file or select add Candidates</h3>
+                </div>
+            </div>
+            <div class="file-upload-content">
+                <img class="file-upload-image" src="#" alt="your image" />
+                <div class="image-title-wrap">
+                    <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                </div>
+            </div>
+        </div>
+        <div class="btn-group flex" role="group" style="width: 100%; justify-content: center;" aria-label="Basic example">
+            <button onclick="nextUploadproccess()" type="submit" class="btn btn-secondary">Submit</button>
+            <button onclick="nextUploadproccess()" type="button" class="btn btn-secondary">Skip</button>
+        </div>
+    }*@
+
+@*</div>
+    </div>*@
+
 
 
 
@@ -102,6 +247,93 @@
     $('.image-upload-wrap').bind('dragleave', function () {
         $('.image-upload-wrap').removeClass('image-dropping');
     });
+
+
+    //Modal Section
+
+    //$('.upload_modal').on('shown.bs.modal', function () {
+    //    $('.bs-wizard-dot').trigger('focus')
+    //})
+
+
+    $(document).ready(function () {
+
+        //$(".compCon").hide();
+        //$(".sessionCon").hide();
+        ////Upload
+        //$(".uploadC").click(function () {
+        //    $(".uploadCon").show();
+        //});
+        //$(".uploadC").click(function () {
+        //    $(".compCon").hide();
+        //    $(".sessionCon").hide();
+        //});
+        ////Session
+        //$(".sessionC").click(function () {
+        //    $(".sessionCon").show();
+        //});
+        //$(".sessionC").click(function () {
+        //    $(".compCon").hide();
+        //    $(".uploadCon").hide();
+        //});
+        ////Component
+        //$(".compC").click(function () {
+        //    $(".compCon").show();
+        //});
+        //$(".compC").click(function () {
+        //    $(".uploadCon").hide();
+        //    $(".sessionCon").hide();
+        //});
+
+
+
+        var navListItems = $('div.setup-panel div a'),
+            allWells = $('.setup-content'),
+            allNextBtn = $('.nextBtn');
+
+        allWells.hide();
+
+        navListItems.click(function (e) {
+            e.preventDefault();
+            var $target = $($(this).attr('href')),
+                $item = $(this);
+
+            if (!$item.hasClass('disabled')) {
+                navListItems.removeClass('btn-success').addClass('btn-default');
+                $item.addClass('btn-success');
+                allWells.hide();
+                $target.show();
+                $target.find('input:eq(0)').focus();
+            }
+        });
+
+        allNextBtn.click(function () {
+            var curStep = $(this).closest(".setup-content"),
+                curStepBtn = curStep.attr("id"),
+                nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
+                curInputs = curStep.find("input[type='text'],input[type='url']"),
+                isValid = true;
+
+            $(".form-group").removeClass("has-error");
+            for (var i = 0; i < curInputs.length; i++) {
+                if (!curInputs[i].validity.valid) {
+                    isValid = false;
+                    $(curInputs[i]).closest(".form-group").addClass("has-error");
+                }
+            }
+
+            if (isValid) nextStepWizard.removeAttr('disabled').trigger('click');
+        });
+
+        $('div.setup-panel div a.btn-success').trigger('click');
+
+
+
+
+
+    });
+
+
 
 </script>
 

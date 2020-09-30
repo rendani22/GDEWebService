@@ -6,42 +6,104 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!--MDB Section-->
+    <!--MDB Section-->
+
+    <style>
+    </style>
 </head>
 <body>
 
 
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header">
+            <div class="navbar-header" style="padding-top: 20px;>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <span><img src="~/Content/webserv.png" height="40px" /></span>
+                @*@Html.ActionLink("Lebone Media \n Web Services", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
-            <ul class="nav ">
-                <li class="nav-item">@Html.ActionLink("Home", "Index", "Home")</li>
-                <li class="nav-item">@Html.ActionLink("About", "About", "Home")</li>
-                <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home")</li>
-                <li class="nav-item">@Html.ActionLink("Marker", "Marker", "RMWebService")</li>
-            </ul>
+            <div style='flex: 1 1 auto;'></div>
+            @*<ul class="nav ">
+                    <li class="nav-item">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class="nav-item">@Html.ActionLink("About", "About", "Home")</li>
+                    <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li class="nav-item">@Html.ActionLink("Marker", "Marker", "RMWebService")</li>
+                </ul>*@
         </div>
     </div>
-    <div class="container body-content">
+    <hr />
+    <div class="container">
         @RenderBody()
+
         <hr />
     </div>
 
+
+
+
+
+
+    <!--<body class="text-center">
+        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+            <header class="masthead mb-auto">
+                <div class="inner">
+                    <h3 class="masthead-brand">Webservices</h3>-->
+    @*<nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link active" href="#">Home</a>
+            <a class="nav-link" href="#">Features</a>
+            <a class="nav-link" href="#">Contact</a>
+        </nav>*@
+    <!--</div>
+    </header>-->
+    @*<div class="stepwizard">
+            <div class="stepwizard-row setup-panel">
+                <div class="stepwizard-step col-xs-3">
+                    <a href="#step-1" type="button" class="btn btn-success btn-circle">1</a>
+                    <p><small>Upload Dataset</small></p>
+                </div>
+                <div class="stepwizard-step col-xs-3">
+                    <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+                    <p><small>Create Session</small></p>
+                </div>
+                <div class="stepwizard-step col-xs-3">
+                    <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                    <p><small>Create Component</small></p>
+                </div>
+                <div class="stepwizard-step col-xs-3">
+                    <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
+                    <p><small>Overview</small></p>
+                </div>
+            </div>
+        </div>*@
+
+    <!--<main role="main" class="inner cover">
+
+        </main>
+
+        <footer class="mastfoot mt-auto">
+            <div class="inner">
+                <p>Web Services</p>
+            </div>
+        </footer>
+    </div>-->
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    <script src="~/Scripts/site.js"></script>
+    <script src="./Scripts/site.js"></script>
     @RenderSection("scripts", required: false)
+
 </body>
 </html>
