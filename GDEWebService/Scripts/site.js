@@ -1,5 +1,7 @@
 ﻿//Table of contents
 
+//import { get } from "jquery";
+
 //01. StartFeeds
 
 
@@ -24,3 +26,26 @@ function nextUploadproccess() {
     });
 
 }
+
+
+let sessions = [];
+
+const addSession = (ev) => {
+    ev.preventDefault();
+    let sessionData = {
+        id: document.getElementById('#sid').value,
+        name: document.getElementById('#sname').value,
+            stframe: document.getElementById('#stframe').value
+    }
+    sessions.push(sessionData);
+    document.forms[0].reset();
+
+    console.log(sessionData);
+    console.log(addSession);
+    localStorage.setItem('Session List', JSON.stringify(sessions));
+}
+
+document.addEventListener('DOMContnetLoaded', () => {
+    document.getElementById('#sbtn').addEventListener('click', sessions);
+});
+
