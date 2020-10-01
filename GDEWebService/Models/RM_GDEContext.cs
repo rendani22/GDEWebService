@@ -433,6 +433,13 @@ namespace GDEWebService.Models
                 entity.Property(e => e.ComponentIdentifier).HasMaxLength(50);
 
                 entity.Property(e => e.ComponentName).HasMaxLength(50);
+
+                entity.Property(e => e.SessionIdentifier).HasMaxLength(50);
+
+                entity.HasOne(d => d.SessionIdentifierNavigation)
+                    .WithMany(p => p.Product)
+                    .HasForeignKey(d => d.SessionIdentifier)
+                    .HasConstraintName("FK_Product_Session");
             });
 
             modelBuilder.Entity<QuestionPaper>(entity =>

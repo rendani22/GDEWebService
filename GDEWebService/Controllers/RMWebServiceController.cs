@@ -13,6 +13,7 @@ using GDEWebService.ScanningWebWS;
 using System.Globalization;
 using System.Xml.Serialization;
 using System.Xml;
+using GDEWebService.ViewModels;
 
 namespace GDEWebService.Controllers
 {
@@ -416,7 +417,33 @@ namespace GDEWebService.Controllers
 
         public ActionResult StartFeeds()
         {
-            return View();
+
+            using (var db = new RM_GDEContext())
+            {
+
+
+                var session = db.Session.ToList();
+                var product = db.Product.ToList();
+
+                var questionPaperList = db.Candidates.Select(c => new QuestionPaperList { value = c.SubjectCode, text =c.SubjectCode}).Distinct().ToList();
+
+                var convertedList = new QuestionPaperList()
+                {
+                    value = null,
+                    text = "--- Select Qestion paper ---"
+                };
+                questionPaperList.Insert(0, convertedList);
+
+                var enumerable = new[] { convertedList };
+                var sessionProduct = new ProductModelView()
+                {
+                    session = session,
+                    product = product,
+                    QuestionsPaper = questionPaperList
+                };
+
+                return View(sessionProduct);
+            }
         }
 
         public PartialViewResult uploadProcess(string step)

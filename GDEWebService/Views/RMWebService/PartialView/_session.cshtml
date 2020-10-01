@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GDEWebService.Models.Session>
+﻿@model GDEWebService.ViewModels.ProductModelView
 <div class="row">
     <form name="sessionform" @*action="/Home/addProduct"*@ method="post" onsubmit="required()
     ">
@@ -80,43 +80,30 @@
             <div class="card-header">
                 Existing Sessions
             </div>
-            <div class="card-body">
-                <div class="card col-lg-4" style="padding:10px;">
-                    <div class="form-group">
-                        <label>Session Identifier</label>
-                        </br>
-                        <label>Session Name</label>
-                        </br>
-                        <label>Session Time Frame</label>
+
+            <div class="card-body row" style="">
+
+                @foreach (var session in Model.session)
+                {
+                    <div class="card sessionCard col-lg-4" style="padding:10px; ">
+                        <div class="form-group">
+                            <label id="SessionIdentifierL">@session.SessionIdentifier</label>
+                            <br />
+                            <label  id="NameL">@session.Name</label>
+                            <br />
+                            <label  id="TimeframeL">@session.Timeframe</label>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="card col-lg-4" style="padding:10px;">
-                    <div class="form-group">
-                        <label>Session Identifier</label>
-                        </br>
-                        <label>Session Name</label>
-                        </br>
-                        <label>Session Time Frame</label>
-                    </div>
-                </div>
-                
-                <div class="card col-lg-4" style="padding:10px;">
-                    <div class="form-group">
-                        <label>Session Indetifier</label>
-                        </br>
-                        <label>Session Name</label>
-                        </br>
-                        <label>Session Time Frame</label>
-                    </div>
+                }
+
+
                 </div>
             </div>
             </div>
     </div>
 
-</div>
 
-@*<div class="btn-group flex" role="group" style="width: 800px;margin-left: 45%;" aria-label="Basic example">
-        <button  type="button" class="btn btn-secondary">Back</button>
-        <button onclick="nextUploadproccess()" type="button" class="btn btn-secondary">Next</button>
-    </div>*@
+
+<script>
+
+</script>

@@ -12,5 +12,8 @@ namespace GDEWebService.Models
         public string ComponentIdentifier { get; set; }
         public string ComponentName { get; set; }
         public int? ComponentVersion { get; set; }
+        public string SessionIdentifier { get; set; }
+
+        public virtual Session SessionIdentifierNavigation { get; set; }
     }
 }

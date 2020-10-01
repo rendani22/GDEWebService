@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using GDEWebService.Models;
 using GDEWebService.AssessmentStructureWS;
 using System.Threading.Tasks;
+using GDEWebService.SessionCompositionWS;
 
 namespace GDEWebService.Controllers
 {
@@ -102,6 +103,8 @@ namespace GDEWebService.Controllers
 
             if (productReceipt.Success)
             {
+                AddCenterCandidate(SessionIdentifier, AssessmentIndentifier, AssessmentVersion, ComponentIdentifier, ComponentVersion, QuestionPaperIdentifier, QuestionPaperPartName);
+
                 using (var db = new RM_GDEContext())
                 {
                     db.Product.Add(new Product
@@ -146,12 +149,117 @@ namespace GDEWebService.Controllers
                     await db.SaveChangesAsync();
                     var listOfSessions = db.QuestionPaper.ToList();
                     return View("Index", listOfSessions);
-
                 }
-
                 
             }
             return View("Index");
         }
+
+
+        public void AddCenterCandidate(string SessionIdentifier, string AssessmentIdentifier, int AssessmentVersion, string ComponentIdentifier, int ComponentVersion, string QuestionPaperIdentifier, string QuestionPaperPartName)
+        {
+            //AssessmentIdentifier = SubjectCode
+            //ComponentIdentifier = Subject Code + Paper number
+            //var paperNumber = ComponentIdentifier.Last().ToString();
+
+            var paperNumber = QuestionPaperPartName == "A" ? "1" : QuestionPaperPartName == "B" ? "2" : QuestionPaperPartName == "C" ? "3" : "1";
+
+            using (var db = new RM_GDEContext())
+            {
+                var candidates = db.Candidates.ToList();
+                var centers = candidates.Where(c => c.SubjectCode == QuestionPaperIdentifier && c.Paper == paperNumber).Select(c => new { c.CentreName, c.MsNo }).Distinct();
+                //var centers = candidates.Select(c => new { c.CentreName, c.MsNo }).Distinct();
+
+                foreach (var center in centers)
+                {
+                    using (SessionCompositionWS.SessionCompositionWS sessionComposition = new SessionCompositionWS.SessionCompositionWS())
+                    {
+                        var numberOfMarkSheets = centers.Where(c => c.MsNo == center.MsNo).Distinct().Count();
+                        Packet[] packets = new Packet[numberOfMarkSheets];
+                        for (var i = 0; i < numberOfMarkSheets; i++)
+                        {
+                            Packet packet = new Packet
+                            {
+                                PacketBarcode = center.MsNo
+                            };
+                            packets[i] = packet;
+                        }
+
+
+                        PacketArguments packetArguments = new PacketArguments
+                        {
+                            BusinessStreamIdentifier = WebServiceDetails.BusinessStreamIndentifier,
+                            SessionIdentifier = SessionIdentifier,
+                            AssessmentIdentifier = AssessmentIdentifier,
+                            AssessmentVersion = AssessmentVersion,
+                            ComponentIdentifier = ComponentIdentifier,
+                            ComponentVersion = ComponentVersion,
+                            CentreIdentifier = center.CentreName,
+                            Packets = packets
+                        };
+
+                        var sendPackets = sessionComposition.Packets(WebServiceDetails.RMKey, packetArguments);
+
+
+                        if (sendPackets.Success)
+                        {
+                            var candidateList = candidates.Where(c => c.CentreName == center.CentreName);
+
+                            //CentreCandidateIdentifier = ExamNumber + Subject code + paper number
+
+                            var numberOfCandidates = candidateList.Count();
+                            CandidateEntry[] CandidateEntries = new CandidateEntry[numberOfCandidates];
+                            var j = 0;
+                            foreach (var candidate in candidateList)
+                            {
+
+                                CandidateEntry candidateModel = new CandidateEntry
+                                {
+                                    UniqueCandidateIdentifier = candidate.Idno,
+                                    CentreCandidateIdentifier = candidate.Idno,
+                                    CandidateName = candidate.Idno + candidate.SubjectCode + candidate.Paper,
+                                    Gender = "N",
+                                    DOB = (DateTime)candidate.Dob
+                                };
+                                CandidateEntries[j] = candidateModel;
+                                j++;
+                            }
+                            //for (var i = 0; i < numberOfCandidates; i++)
+                            //{
+
+                            //    CandidateEntry candidateModel = new CandidateEntry
+                            //    {
+                            //        UniqueCandidateIdentifier = candidateList.
+                            //    };
+                            //    CandidateEntries[i] = candidateModel;
+                            //}
+
+                            CandidateEntriesArguments candidateEntriesArguments = new CandidateEntriesArguments
+                            {
+                                BusinessStreamIdentifier = WebServiceDetails.BusinessStreamIndentifier,
+                                SessionIdentifier = SessionIdentifier,
+                                AssessmentIdentifier = AssessmentIdentifier,
+                                AssessmentVersion = AssessmentVersion,
+                                ComponentIdentifier = ComponentIdentifier,
+                                ComponentVersion = ComponentVersion,
+                                CentreIdentifier = center.CentreName,
+                                CandidateEntries = CandidateEntries
+                            };
+
+                            var sendCandidates = sessionComposition.CandidateEntries(WebServiceDetails.RMKey, candidateEntriesArguments);
+                        }
+                    }
+
+                }
+
+            }
+
+
+            //return PartialView();
+        }
     }
+
+
+  
+
 }
