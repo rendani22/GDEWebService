@@ -1,4 +1,27 @@
 ﻿@model GDEWebService.ViewModels.ProductModelView
+
+<style>
+    .hoverdiv {
+        background-color: #42a1f3 !important;
+        color: white;
+        cursor: pointer;
+    }
+
+
+    .sessionCardClass {
+        background-color: #337ab7;
+    }
+
+    .myClass {
+        background-color: #337ab7;
+        color: white;
+    }
+
+        .myClass:hover {
+            background-color: #337ab7;
+        }
+</style>
+
 <div class="row">
 
     <form action="/Home/addProduct" method="post">
@@ -205,7 +228,7 @@
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3" style="margin-top: 20px;">
             @*<button type="submit" class="btn btn-primary">Create Component</button>*@
-            <button type="button" onclick="createProduct()" class="btn btn-primary">Create Component</button>
+            <button id="createProduct" type="button" @*onclick="createProduct()"*@ class="btn btn-primary">Create Component</button>
         </div>
     </form>
 

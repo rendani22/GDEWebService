@@ -91,13 +91,23 @@ var Name;
 var PageCount;
 var SyllabusCode;
 
+
+
+
 $(".sessionCard").hover(
     function () {
         $(this).addClass("hoverdiv");
     }, function () {
-        $(this).removeClass("hoverdiv");
+        $(this).removeClass("hoverdiv");    
     }
 );
+
+$(".sessionCard").click(function () {
+    $(this).addClass('myClass');
+});
+
+
+
 
 $(".ComponentsCard").hover(
     function () {
@@ -107,11 +117,23 @@ $(".ComponentsCard").hover(
     }
 );
 
+$(".ComponentsCard").click(function () {
+    $(this).toggleClass('myClass');
+});
+
+$("#sbtn").click(function () {
+
+    sessionID = $(this).find('#sid').val();
+    sessionName = $(this).find('#sname').val();
+    timeFrame = $(this).find('#stframe').val();
+
+    console.log(sessionIdentifier);
+    console.log(sessionName);
+    console.log(timeFrame);
 
 
-
-
-
+    $("#step3").trigger("click");
+});
 
 $(".sessionCard").click(function () {
 
@@ -123,6 +145,7 @@ $(".sessionCard").click(function () {
     console.log(sessionName);
     console.log(timeFrame);
 
+    
     $("#step3").trigger("click");
 });
 
@@ -150,11 +173,45 @@ $(".ComponentsCard").click(function () {
     console.log(sessionIdentifier);
     console.log(sessionName);
     console.log(timeFrame);
-    //$("#step4").trigger("click");
+    $("#step4").trigger("click");
 });
 
+//$("#createProduct").click(function () {
+//    //if (!$('input').val()) {
+//    //    StartDate = $("#StartDate").val();
+//    //    StartDatePart = $("#StartDatePart").val();
+//    //    EndDate = $("#EndDate").val();
+
+//    //    QuestionPaperIdentifier = $("#QuestionPaperIdentifier").val();
+//    //    Barcode = $("#Barcode").val();
+//    //    QuestionPaperPartName = $("#QuestionPaperPartName").val();
+//    //    MarkingType = $("#MarkingType").val();
+//    //    Name = $("#Name").val();
+//    //    PageCount = $("#PageCount").val();
+//    //    SyllabusCode = $("#SyllabusCode").val();
+//    //}
+
+//    //if (QualificationShortName  == 0) {
+//    //    console.log("empty");
+//    //    //StartDate = $("#StartDate").val();
+//    //    //StartDatePart = $("#StartDatePart").val();
+//    //    //EndDate = $("#EndDate").val();
+
+//    //    //QuestionPaperIdentifier = $("#QuestionPaperIdentifier").val();
+//    //    //Barcode = $("#Barcode").val();
+//    //    //QuestionPaperPartName = $("#QuestionPaperPartName").val();
+//    //    //MarkingType = $("#MarkingType").val();
+//    //    //Name = $("#Name").val();
+//    //    //PageCount = $("#PageCount").val();
+//    //    //SyllabusCode = $("#SyllabusCode").val();
+//    //}
+
+//    $("#step4").trigger("click");
+//});
 
 function createProduct() {
+    
+
     StartDate = $("#StartDate").val();
     StartDatePart = $("#StartDatePart").val();
     EndDate = $("#EndDate").val();
