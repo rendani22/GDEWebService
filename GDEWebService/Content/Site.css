@@ -459,9 +459,9 @@ form {
     width: 100%;
 }
 
-.hoverdiv {
+.active, .hoverdiv {
     background-color: cornsilk !important;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 

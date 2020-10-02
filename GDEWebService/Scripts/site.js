@@ -28,26 +28,26 @@ function nextUploadproccess() {
 }
 
 
-let sessions = [];
+//let sessions = [];
 
-const addSession = (ev) => {
-    ev.preventDefault();
-    let sessionData = {
-        id: document.getElementById('#sid').value,
-        name: document.getElementById('#sname').value,
-            stframe: document.getElementById('#stframe').value
-    }
-    sessions.push(sessionData);
-    document.forms[0].reset();
+//const addSession = (ev) => {
+//    ev.preventDefault();
+//    let sessionData = {
+//        id: document.getElementById('#sid').value,
+//        name: document.getElementById('#sname').value,
+//            stframe: document.getElementById('#stframe').value
+//    }
+//    sessions.push(sessionData);
+//    document.forms[0].reset();
 
-    console.log(sessionData);
-    console.log(addSession);
-    localStorage.setItem('Session List', JSON.stringify(sessions));
-}
+//    console.log(sessionData);
+//    console.log(addSession);
+//    localStorage.setItem('Session List', JSON.stringify(sessions));
+//}
 
-document.addEventListener('DOMContnetLoaded', () => {
-    document.getElementById('#sbtn').addEventListener('click', sessions);
-});
+//document.addEventListener('DOMContnetLoaded', () => {
+//    document.getElementById('#sbtn').addEventListener('click', sessions);
+//});
 
 
 $(document).ready(function () {
@@ -110,9 +110,6 @@ $(".ComponentsCard").hover(
 
 
 
-
-
-
 $(".sessionCard").click(function () {
 
      sessionIdentifier = $(this).find('#SessionIdentifierL').text();
@@ -125,6 +122,19 @@ $(".sessionCard").click(function () {
 
     $("#step3").trigger("click");
 });
+
+
+$("#newSession").click(function () {
+    sessionIdentifier = $("#sid").val();
+    sessionName = $("#sname").val();
+    timeFrame = $("#stframe").val();
+
+    console.log(sessionIdentifier);
+    console.log(sessionName);
+    console.log(timeFrame);
+
+    $("#step3").trigger("click");
+})
 
 $(".ComponentsCard").click(function () {
 
@@ -155,34 +165,36 @@ $(".ComponentsCard").click(function () {
 
 
 function createProduct() {
-    StartDate = $("#StartDate").val();
-    StartDatePart = $("#StartDatePart").val();
-    EndDate = $("#EndDate").val();
 
-    QuestionPaperIdentifier = $("#QuestionPaperIdentifier").val();
-    Barcode = $("#Barcode").val();
-    QuestionPaperPartName = $("#QuestionPaperPartName").val();
-    MarkingType = $("#MarkingType").val();
-    Name = $("#Name").val();
-    PageCount = $("#PageCount").val();
-    SyllabusCode = $("#SyllabusCode").val();
+    if (!QualificationShortName) {
+        console.log($("#QualificationShortName").val().length);
+        if ($("#QualificationShortName").val().length == 0) {
+            throw new Error("Something went badly wrong!");
+        } else {
 
-    console.log(StartDate);
-    console.log(StartDatePart);
-    console.log(EndDate);
 
-    console.log(QuestionPaperIdentifier);
-    console.log(Barcode);
-    console.log(QuestionPaperPartName);
-    console.log(MarkingType);
-    console.log(Name);
-    console.log(PageCount);
-    console.log(SyllabusCode);
+            QualificationShortName = $("#QualificationShortName").val();
+            AssessmentIndentifier = $("#AssessmentIndentifier").val();
+            AssessmentName = $("#AssessmentName").val();
+            AssessmentVersion = $("#AssessmentVersion").val();
+            ComponentIdentifier = $("#ComponentIdentifier").val();
+            ComponentName = $("#ComponentName").val();
+            ComponentVersion = $("#ComponentVersion").val();
 
-    console.log(sessionIdentifier);
-    console.log(sessionName);
-    console.log(timeFrame);
 
+            StartDate = $("#StartDate").val();
+            StartDatePart = $("#StartDatePart").val();
+            EndDate = $("#EndDate").val();
+
+            QuestionPaperIdentifier = $("#QuestionPaperIdentifier").val();
+            Barcode = $("#Barcode").val();
+            QuestionPaperPartName = $("#QuestionPaperPartName").val();
+            MarkingType = $("#MarkingType").val();
+            Name = $("#Name").val();
+            PageCount = $("#PageCount").val();
+            SyllabusCode = $("#SyllabusCode").val();
+        }
+    }
 
 
     $.ajax({
@@ -197,8 +209,27 @@ function createProduct() {
         },
         success: function (response) {
             console.log("Yes");
-
         }
     });
 
 }
+
+function showActive(section) {
+
+    var btnContainer = document.getElementById($(section).parent('div')[0].id);
+
+    // Get all buttons with class="btn" inside the container
+    var btns = btnContainer.getElementsByClassName("card");
+    console.log(btns);
+    // Loop through the buttons and add the active class to the current/clicked button
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+            var current = btnContainer.getElementsByClassName("active");
+            for (var j = 0; j < current.length; j++) {
+                current[j].className = current[j].className.replace(" active", "");
+            }
+            this.className += " active";
+        });
+    }
+}
+
